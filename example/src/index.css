@@ -1,3 +1,13 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -11,36 +21,22 @@ body {
 main {
   align-items: center;
   background-color: #f1f1f1;
+  color: #666;
   display: flex;
   flex-direction: column;
   justify-content: center;
   min-height: 100vh;
-  transition: 0.5s;
-}
-
-.themer-dark main {
-  background-color: #242835;
-}
-
-.themer-custom main {
-  background-color: #b95c2f;
+  padding: 2rem 1rem;
 }
 
 h1 {
   font-weight: 300;
-  transition: 0.5s;
+  margin-bottom: 0.25rem;
 }
 
-.themer-dark h1 {
-  color: #f1f1f1;
-}
-
-.themer-light h1 {
-  color: #666;
-}
-
-.themer-custom h1 {
-  color: #462c1f;
+h1+a {
+  display: block;
+  margin-bottom: 2rem;
 }
 
 button {
@@ -50,35 +46,44 @@ button {
   color: #666;
   cursor: pointer;
   outline: 0;
-  font-size: 18px;
+  font-size: 16px;
   padding: 0.75rem 1.5rem;
   text-transform: capitalize;
-  transition: 0.5s;
-}
-
-.themer-dark button {
-  background-color: #393e4d;
-  border-color: #464d5f;
-  color: #f1f1f1;
-}
-
-.themer-custom button {
-  background-color: #da7f54;
-  border-color: #865037;
-  color: #462c1f;
 }
 
 button.active {
   border-color: rgb(5, 111, 182);
 }
 
-.themer-custom button.active {
-  border-color: #f9d5c4;
-  color: #fff;
-}
-
 button+button {
   margin-left: 1rem;
+}
+
+a {
+  color: inherit;
+  font-weight: bold;
+}
+
+table,
+pre {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+table {
+  border-radius: 3px;
+  border-spacing: 1rem;
+  text-align: left;
+}
+
+pre {
+  border-radius: 3px;
+  padding: 1rem;
+}
+
+button:last-of-type+h1,
+button:last-of-type+h1+h2,
+button:last-of-type+h1+h2+p {
+  display: none;
 }
 
 @media only screen and (max-width: 600px) {

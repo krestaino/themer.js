@@ -2,12 +2,23 @@ import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import Themer from "react-themer.js";
 import "./index.css";
+import "./dark.css";
+import "./custom.css";
+import ReactMarkdown from "react-markdown";
+import README from "../node_modules/react-themer.js/README.md";
 
 class App extends Component {
   state = {
     active: "auto",
-    themes: ["auto", "system", "light", "dark", "custom"]
+    themes: ["auto", "system", "light", "dark", "custom"],
+    markdown: ""
   };
+
+  componentDidMount() {
+    fetch(README)
+      .then(res => res.text())
+      .then(text => this.setState({ markdown: text }));
+  }
 
   render() {
     const { active, themes } = this.state;
@@ -17,6 +28,9 @@ class App extends Component {
         <main>
           <div>
             <h1>Themer.js</h1>
+            <a href="https://github.com/krestaino/themer.js">
+              github.com/krestaino/themer.js
+            </a>
             {themes.map(theme => (
               <button
                 className={theme === active ? "active" : ""}
@@ -26,6 +40,7 @@ class App extends Component {
                 {theme}
               </button>
             ))}
+            <ReactMarkdown source={this.state.markdown} />
           </div>
         </main>
       </Themer>
