@@ -4,7 +4,17 @@
 
 [themer.js.kmr.io](https://themer.js.kmr.io) (Source can be found under the `example` folder.)
 
-## Usage
+## Quick Start
+
+### Install
+
+```
+npm install react-themer.js
+// or
+yarn add react-themer.js
+```
+
+### Usage
 
 ```
 import Themer from "react-themer.js";
