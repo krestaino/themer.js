@@ -2,8 +2,9 @@
   "name": "react-themer.js",
   "version": "0.16.0",
   "scripts": {
-    "build": "./node_modules/.bin/babel src --out-file index.js"
+    "build": "./node_modules/.bin/babel src --out-file dist/index.js"
   },
+  "main": "dist/index.js",
   "peerDependencies": {
     "react": "^16.6.1",
     "react-dom": "^16.6.3"

@@ -37,23 +37,23 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-var Theme =
+var Themer =
 /*#__PURE__*/
 function (_Component) {
-  _inherits(Theme, _Component);
+  _inherits(Themer, _Component);
 
-  function Theme() {
+  function Themer() {
     var _getPrototypeOf2;
 
     var _this;
 
-    _classCallCheck(this, Theme);
+    _classCallCheck(this, Themer);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(Theme)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(Themer)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     _defineProperty(_assertThisInitialized(_this), "state", {
       theme: "light"
@@ -62,7 +62,7 @@ function (_Component) {
     return _this;
   }
 
-  _createClass(Theme, [{
+  _createClass(Themer, [{
     key: "autoTheme",
     value: function () {
       var _autoTheme = _asyncToGenerator(
@@ -194,7 +194,7 @@ function (_Component) {
     }
   }]);
 
-  return Theme;
+  return Themer;
 }(_react.Component);
 
-exports["default"] = Theme;
+exports["default"] = Themer;
