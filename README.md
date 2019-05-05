@@ -18,7 +18,7 @@ $ npm install react-themer.js
 
 ### Static Theme
 
-The default theme adds a CSS selector for you to target light and dark themes depending on the sunset and sunrise.
+The default theme `auto` adds a CSS selector for you to target `light` and `dark` themes depending on the `sunset` and `sunrise`.
 
 See more: [Styles](#styles)
 
@@ -62,7 +62,7 @@ export default class App extends Component {
 }
 ```
 
-## Props
+## <a name="props"></a>Props
 
 | Prop      | Type     | Default                                                          | Description                                                                                                          |
 | --------- | -------- | ---------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
@@ -116,7 +116,7 @@ export default class App extends Component {
 }
 ```
 
-## Styles
+## <a name="styles">Styles</a>
 
 To target a specific theme, simply use the theme's CSS selector.
 

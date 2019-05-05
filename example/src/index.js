@@ -81,7 +81,7 @@ class App extends Component {
               </div>
             </header>
             <div className="readme">
-              <ReactMarkdown source={markdown} />
+              <ReactMarkdown source={markdown} escapeHtml={false} />
             </div>
             <footer>
               <span>{PACKAGE.author.name}</span>
