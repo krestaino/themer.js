@@ -52,7 +52,7 @@ button {
 }
 
 button.active {
-  border-color: rgb(5, 111, 182);
+  border-color: rgb(5, 111, 182) !important;
 }
 
 button+button {
