@@ -8,6 +8,7 @@ import "./dark.css";
 import "./custom.css";
 
 import README from "../node_modules/react-themer.js/README.md";
+import PACKAGE from "../node_modules/react-themer.js/package.json";
 
 class App extends Component {
   state = {
@@ -48,13 +49,14 @@ class App extends Component {
           <section>
             <header>
               <div className="meta">
-                <h1>Themer.js</h1>
+                <h1>
+                  Themer.js <span>v{PACKAGE.version}</span>
+                </h1>
                 <a href="https://github.com/krestaino/themer.js">
                   github.com/krestaino/themer.js
                 </a>
                 <p>
-                  {this.getEmoji()} Automatically switch between dark and light
-                  themes at sunset and sunrise using the user's location.
+                  {this.getEmoji()} {PACKAGE.description}
                 </p>
               </div>
               <div className="buttons">
@@ -73,6 +75,8 @@ class App extends Component {
               <ReactMarkdown source={this.state.markdown} />
             </div>
             <footer>
+              <span>{PACKAGE.author.name}</span>
+              <span>{PACKAGE.author.email}</span>
               <svg
                 aria-hidden="true"
                 focusable="false"

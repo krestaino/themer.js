@@ -1,7 +1,7 @@
 {
   "name": "react-themer.js",
   "description": "Automatically switch between dark and light themes at sunset and sunrise using the user's location.",
-  "version": "0.27.0",
+  "version": "0.28.0",
   "main": "dist/index.js",
   "scripts": {
     "build": "./node_modules/.bin/babel src --out-file dist/index.js"
@@ -22,7 +22,10 @@
     "location",
     "geolocation"
   ],
-  "author": "Kevin Restaino <kevin.restaino@gmail.com",
+  "author": {
+    "name": "Kevin Restaino",
+    "email": "kevin.restaino@gmail.com"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/krestaino/themer.js/issues"

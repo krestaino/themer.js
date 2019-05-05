@@ -34,12 +34,17 @@ main {
   display: inline-block;
   font-size: 2rem;
   font-weight: 300;
-  margin-bottom: 0.5rem;
+  margin: 0 0 0.5rem 0;
+}
+
+.meta span {
+  font-family: monospace;
+  font-size: 1rem;
 }
 
 .meta a {
-  display: inline-block;
-  margin-left: 1rem;
+  display: block;
+  margin-bottom: 1rem;
 }
 
 .meta p {
@@ -117,10 +122,19 @@ pre {
   display: none;
 }
 
+footer {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  font-family: monospace;
+  justify-content: center;
+  opacity: 0.5;
+  margin: 1rem;
+}
+
 footer svg {
   display: block;
-  opacity: 0.5;
-  margin: 2rem auto;
+  margin-top: 0.5rem;
   width: 1rem;
 }
 

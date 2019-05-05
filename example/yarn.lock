@@ -8060,10 +8060,10 @@ react-scripts@3.0.0:
   optionalDependencies:
     fsevents "2.0.6"
 
-react-themer.js@^0.27.0:
-  version "0.27.0"
-  resolved "https://registry.yarnpkg.com/react-themer.js/-/react-themer.js-0.27.0.tgz#f7280849a79abc9165c3ddbc3da665ce77c7668d"
-  integrity sha512-yIJYXYOrkdtZKDXfRPc17cH0AsGwMMC/PF2RLCpxH5NeXY5bPQPCkknxwAt40xkx14wUe4Pz2Dc57cn07fSB5g==
+react-themer.js@^0.28.0:
+  version "0.28.0"
+  resolved "https://registry.yarnpkg.com/react-themer.js/-/react-themer.js-0.28.0.tgz#d9df052cf0a1e2c055f1f59b59556f3dab3e9b4b"
+  integrity sha512-mB7/Cp21ytfxXdyw/tc13NP+D/KhsWLvt70hjQP5Bx0nxEudA0lujq326BFrytiU3PGaJkgMI+q1GfCxM4M/MQ==
   dependencies:
     suncalc "^1.8.0"
 
