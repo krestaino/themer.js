@@ -6,7 +6,7 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-scripts": "3.0.0",
-    "react-themer.js": "^0.16.0"
+    "react-themer.js": "^0.17.0"
   },
   "scripts": {
     "start": "react-scripts start",
