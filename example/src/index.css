@@ -160,9 +160,9 @@ pre code {
   white-space: pre-wrap;
 }
 
-.readme h1,
-.readme h1+h2,
-.readme h1+h2+p {
+.readme>h1:first-child,
+.readme>h1:first-child+h2,
+.readme>h1:first-child+h2+p {
   display: none;
 }
 
