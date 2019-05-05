@@ -2,9 +2,9 @@
 
 ## Demo
 
-[themer.js.kmr.io](https://themer.js.kmr.io) (Source can be found under the `example` folder.)
+[themer.js.kmr.io](https://themer.js.kmr.io) (Source can be found under the [example](https://github.com/krestaino/themer.js/tree/master/example) folder.)
 
-## Quick Start
+## Getting Started
 
 ### Install
 
