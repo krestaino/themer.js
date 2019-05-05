@@ -189,7 +189,7 @@ function (_Component) {
     key: "render",
     value: function render() {
       return _react["default"].createElement("div", {
-        className: "themer-" + this.state.theme
+        className: "themer--" + this.state.theme
       }, this.props.children);
     }
   }]);
