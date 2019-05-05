@@ -1,6 +1,8 @@
 html {
   box-sizing: border-box;
-  overflow-y: scroll;
+  font-size: 16px;
+  height: 100%;
+  width: 100%;
 }
 
 *,
@@ -77,6 +79,8 @@ main header::before {
 .container {
   margin: 0 auto;
   max-width: 1140px;
+  overflow-x: hidden;
+  padding: 0 1rem;
   width: 100%;
 }
 
@@ -110,6 +114,12 @@ main header::before {
   width: 1rem;
 }
 
+.buttons {
+  display: flex;
+  height: 4rem;
+  padding-top: 1rem;
+}
+
 button {
   border: 2px solid #ddd;
   border-radius: 3px;
@@ -118,7 +128,7 @@ button {
   cursor: pointer;
   outline: 0;
   font-family: inherit;
-  font-size: 16px;
+  font-size: 1rem;
   padding: 0.75rem 1.5rem;
   text-transform: capitalize;
   transition: background-color 0.3s,
@@ -203,7 +213,7 @@ footer {
   justify-content: center;
   line-height: 1.5;
   opacity: 0.5;
-  margin: 1rem;
+  margin: 1rem 0 2rem 0;
 }
 
 footer svg {
@@ -212,14 +222,49 @@ footer svg {
   width: 1rem;
 }
 
+@media only screen and (max-width: 1000px) {
+  html {
+    font-size: 15px;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  html {
+    font-size: 15px;
+  }
+
+  main header {
+    height: 14rem;
+    top: calc(5rem - 14rem);
+  }
+}
+
 @media only screen and (max-width: 600px) {
+  html {
+    font-size: 14px;
+  }
+
+  .buttons {
+    display: flex;
+  }
+
   button {
-    display: block;
-    width: 100%;
+    padding: 0.75rem 0.25rem;
+    width: 20%;
   }
 
   button+button {
-    margin-left: 0;
-    margin-top: 1rem;
+    margin-left: 0.5rem;
+  }
+}
+
+@media only screen and (max-width: 340px) {
+  html {
+    font-size: 13px;
+  }
+
+  main header {
+    height: 16rem;
+    top: calc(5rem - 16rem);
   }
 }
