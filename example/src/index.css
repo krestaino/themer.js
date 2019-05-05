@@ -48,11 +48,14 @@ main {
 }
 
 .meta p {
+  align-items: center;
+  display: flex;
   margin: 0 0 2rem 0;
 }
 
 .meta .emoji {
   display: inline-block;
+  margin-right: 0.25rem;
   text-align: center;
   width: 1rem;
 }
