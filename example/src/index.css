@@ -99,6 +99,13 @@ table {
   text-align: left;
 }
 
+table code {
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+  padding: 4px;
+  transition: background-color 0.3s;
+}
+
 pre {
   border-radius: 3px;
   padding: 1rem;
