@@ -9,14 +9,18 @@
 ### Install
 
 ```
-# using npm
-$ npm install react-themer.js
-
 # using yarn
 $ yarn add react-themer.js
+
+# using npm
+$ npm install react-themer.js
 ```
 
 ### Usage
+
+#### Static Theme
+
+Here the theme is set to `auto`.
 
 ```
 import Themer from "react-themer.js";
@@ -24,6 +28,32 @@ import Themer from "react-themer.js";
 <Themer theme="auto">
   ...
 </Themer>
+```
+
+#### Dynamic Theme
+
+Here the theme is set to `auto` by default and when you click the button, the theme changes to `dark`.
+
+```
+import React, { Component } from "react";
+import ReactDOM from "react-dom";
+import Themer from "react-themer.js";
+
+export default class App extends Component {
+  state = {
+    active: "auto"
+  };
+
+  render() {
+    return (
+      <Themer theme={this.state.active}>
+        <button onClick={() => this.setState({ active: "dark" })}>
+          Dark
+        </button>
+      </Themer>
+    )
+  }
+}
 ```
 
 ## Themes

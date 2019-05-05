@@ -113,7 +113,8 @@ table {
   text-align: left;
 }
 
-table code {
+table code,
+p code {
   background-color: rgba(0, 0, 0, 0.1);
   border-radius: 3px;
   line-height: 2;

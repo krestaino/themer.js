@@ -1,19 +1,19 @@
 ## Install
 
 ```
-# using npm
-$ npm install
-
 # using yarn
 $ yarn install
+
+# using npm
+$ npm install
 ```
 
 ## Start
 
 ```
-# using npm
-$ npm start
-
 # using yarn
 $ yarn start
+
+# using npm
+$ npm start
 ```
