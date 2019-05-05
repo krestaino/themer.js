@@ -2,10 +2,6 @@ import React, { Component } from "react";
 import SunCalc from "suncalc";
 
 export default class Themer extends Component {
-  state = {
-    theme: "light"
-  };
-
   async autoTheme() {
     try {
       const { coords } = await this.getLocation();
@@ -13,9 +9,9 @@ export default class Themer extends Component {
       this.setAutoTheme(latitude, longitude);
       this.interval = setInterval(() => {
         this.setAutoTheme(latitude, longitude);
-      }, 5000);
+      }, 60000);
     } catch (error) {
-      this.setState({ theme: this.state.theme });
+      this.setState({ theme: this.props.theme });
       console.error(error);
     }
   }
@@ -24,9 +20,9 @@ export default class Themer extends Component {
     const date = new Date();
     const { sunrise, sunset } = SunCalc.getTimes(date, latitude, longitude);
 
-    this.setState({
-      theme: date < sunrise || date > sunset ? "dark" : "light"
-    });
+    date < sunrise || date > sunset
+      ? this.setDarkTheme()
+      : this.setLightTheme();
   }
 
   getLocation() {
@@ -36,11 +32,30 @@ export default class Themer extends Component {
   }
 
   systemTheme() {
-    this.setState({
-      theme: window.matchMedia("(prefers-color-scheme: dark)").matches
-        ? "dark"
-        : "light"
-    });
+    window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? this.setDarkTheme()
+      : this.setLightTheme();
+  }
+
+  setDarkTheme() {
+    this.setState({ theme: "dark" });
+    this.setThemeColor(this.props.config.colors.dark);
+  }
+
+  setLightTheme() {
+    this.setState({ theme: "light" });
+    this.setThemeColor(this.props.config.colors.light);
+  }
+
+  setCustomTheme() {
+    this.setState({ theme: this.props.theme });
+    this.setThemeColor(this.props.config.colors.custom);
+  }
+
+  setThemeColor(color) {
+    document
+      .querySelector("meta[name=theme-color]")
+      .setAttribute("content", color);
   }
 
   setTheme() {
@@ -53,13 +68,13 @@ export default class Themer extends Component {
         this.systemTheme();
         break;
       case "dark":
-        this.setState({ theme: "dark" });
+        this.setDarkTheme();
         break;
       case "light":
-        this.setState({ theme: "light" });
+        this.setLightTheme();
         break;
       default:
-        this.setState({ theme: this.props.theme });
+        this.setCustomTheme();
         break;
     }
   }
@@ -76,7 +91,7 @@ export default class Themer extends Component {
 
   render() {
     return (
-      <div className={"themer--" + this.state.theme}>{this.props.children}</div>
+      <div className={"themer--" + this.props.theme}>{this.props.children}</div>
     );
   }
 }

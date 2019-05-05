@@ -134,6 +134,14 @@ table {
   width: 100%;
 }
 
+table td {
+  vertical-align: top;
+}
+
+table code {
+  white-space: nowrap;
+}
+
 table code,
 p code {
   background-color: rgba(0, 0, 0, 0.1);

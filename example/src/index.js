@@ -13,7 +13,10 @@ import PACKAGE from "../node_modules/react-themer.js/package.json";
 class App extends Component {
   state = {
     active: "auto",
-    themes: ["auto", "system", "light", "dark", "custom"],
+    themer: {
+      themes: ["auto", "system", "light", "dark", "custom"],
+      colors: { dark: "#242835", light: "#f1f1f1", custom: "#b95c2f" }
+    },
     markdown: ""
   };
 
@@ -41,10 +44,10 @@ class App extends Component {
   }
 
   render() {
-    const { active, markdown, themes } = this.state;
+    const { active, markdown, themer } = this.state;
 
     return (
-      <Themer theme={active}>
+      <Themer config={themer} theme={active}>
         <main>
           <section>
             <header>
@@ -61,7 +64,7 @@ class App extends Component {
                 </p>
               </div>
               <div className="buttons">
-                {themes.map(theme => (
+                {themer.themes.map(theme => (
                   <button
                     className={theme === active ? "active" : ""}
                     key={theme}

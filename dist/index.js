@@ -27,15 +27,13 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 var Themer =
 /*#__PURE__*/
@@ -43,23 +41,9 @@ function (_Component) {
   _inherits(Themer, _Component);
 
   function Themer() {
-    var _getPrototypeOf2;
-
-    var _this;
-
     _classCallCheck(this, Themer);
 
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(Themer)).call.apply(_getPrototypeOf2, [this].concat(args)));
-
-    _defineProperty(_assertThisInitialized(_this), "state", {
-      theme: "light"
-    });
-
-    return _this;
+    return _possibleConstructorReturn(this, _getPrototypeOf(Themer).apply(this, arguments));
   }
 
   _createClass(Themer, [{
@@ -68,7 +52,7 @@ function (_Component) {
       var _autoTheme = _asyncToGenerator(
       /*#__PURE__*/
       regeneratorRuntime.mark(function _callee() {
-        var _this2 = this;
+        var _this = this;
 
         var _ref, coords, latitude, longitude;
 
@@ -86,8 +70,8 @@ function (_Component) {
                 latitude = coords.latitude, longitude = coords.longitude;
                 this.setAutoTheme(latitude, longitude);
                 this.interval = setInterval(function () {
-                  _this2.setAutoTheme(latitude, longitude);
-                }, 5000);
+                  _this.setAutoTheme(latitude, longitude);
+                }, 60000);
                 _context.next = 14;
                 break;
 
@@ -95,7 +79,7 @@ function (_Component) {
                 _context.prev = 10;
                 _context.t0 = _context["catch"](0);
                 this.setState({
-                  theme: this.state.theme
+                  theme: this.props.theme
                 });
                 console.error(_context.t0);
 
@@ -122,9 +106,7 @@ function (_Component) {
           sunrise = _SunCalc$getTimes.sunrise,
           sunset = _SunCalc$getTimes.sunset;
 
-      this.setState({
-        theme: date < sunrise || date > sunset ? "dark" : "light"
-      });
+      date < sunrise || date > sunset ? this.setDarkTheme() : this.setLightTheme();
     }
   }, {
     key: "getLocation",
@@ -136,9 +118,36 @@ function (_Component) {
   }, {
     key: "systemTheme",
     value: function systemTheme() {
+      window.matchMedia("(prefers-color-scheme: dark)").matches ? this.setDarkTheme() : this.setLightTheme();
+    }
+  }, {
+    key: "setDarkTheme",
+    value: function setDarkTheme() {
       this.setState({
-        theme: window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"
+        theme: "dark"
       });
+      this.setThemeColor(this.props.config.colors.dark);
+    }
+  }, {
+    key: "setLightTheme",
+    value: function setLightTheme() {
+      this.setState({
+        theme: "light"
+      });
+      this.setThemeColor(this.props.config.colors.light);
+    }
+  }, {
+    key: "setCustomTheme",
+    value: function setCustomTheme() {
+      this.setState({
+        theme: this.props.theme
+      });
+      this.setThemeColor(this.props.config.colors.custom);
+    }
+  }, {
+    key: "setThemeColor",
+    value: function setThemeColor(color) {
+      document.querySelector("meta[name=theme-color]").setAttribute("content", color);
     }
   }, {
     key: "setTheme",
@@ -155,21 +164,15 @@ function (_Component) {
           break;
 
         case "dark":
-          this.setState({
-            theme: "dark"
-          });
+          this.setDarkTheme();
           break;
 
         case "light":
-          this.setState({
-            theme: "light"
-          });
+          this.setLightTheme();
           break;
 
         default:
-          this.setState({
-            theme: this.props.theme
-          });
+          this.setCustomTheme();
           break;
       }
     }
@@ -189,7 +192,7 @@ function (_Component) {
     key: "render",
     value: function render() {
       return _react["default"].createElement("div", {
-        className: "themer--" + this.state.theme
+        className: "themer--" + this.props.theme
       }, this.props.children);
     }
   }]);
