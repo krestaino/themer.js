@@ -76,7 +76,7 @@ export default class Themer extends Component {
 
   render() {
     return (
-      <div className={"themer-" + this.state.theme}>{this.props.children}</div>
+      <div className={"themer--" + this.state.theme}>{this.props.children}</div>
     );
   }
 }

@@ -53,7 +53,7 @@ button {
   transition: background-color 0.3s, border-color 0.3s, color 0.3s;
 }
 
-[class^='themer-'] button.active {
+[class^='themer--'] button.active {
   border-color: rgb(5, 111, 182);
 }
 

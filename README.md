@@ -9,9 +9,11 @@
 ### Install
 
 ```
-npm install react-themer.js
-// or
-yarn add react-themer.js
+# using npm
+$ npm install react-themer.js
+
+# using yarn
+$ yarn add react-themer.js
 ```
 
 ### Usage
@@ -26,13 +28,13 @@ import Themer from "react-themer.js";
 
 ## Themes
 
-| Theme      | CSS Selector      | Description                                                                                             |
-| ---------- | ----------------- | ------------------------------------------------------------------------------------------------------- |
-| `auto`     | n/a               | Uses geoloction to find sunset and sunrise times and automatically sets the theme to `light` or `dark`. |
-| `system`   | n/a               | Uses system theme. Relies on [prefers-color-scheme](https://caniuse.com/#search=prefers-color-scheme).  |
-| `light`    | `themer-light`    | Sets the theme to `light`.                                                                              |
-| `dark`     | `themer-dark`     | Sets the theme to `dark`.                                                                               |
-| `<STRING>` | `themer-<STRING>` | Sets the theme to `<STRING>`. Use to set custom themes.                                                 |
+| Theme      | CSS Selector       | Description                                                                                             |
+| ---------- | ------------------ | ------------------------------------------------------------------------------------------------------- |
+| `auto`     |                    | Uses geoloction to find sunset and sunrise times and automatically sets the theme to `light` or `dark`. |
+| `system`   |                    | Uses system theme. Relies on [prefers-color-scheme](https://caniuse.com/#search=prefers-color-scheme).  |
+| `light`    | `themer--light`    | Sets the theme to `light`.                                                                              |
+| `dark`     | `themer--dark`     | Sets the theme to `dark`.                                                                               |
+| `<STRING>` | `themer--<STRING>` | Sets the theme to `<STRING>`. Use to set custom themes.                                                 |
 
 ## Styles
 
@@ -49,7 +51,7 @@ button {
 ### Dark Theme
 
 ```
-.themer-dark button {
+.themer--dark button {
   color: white;
 }
 ```
@@ -57,7 +59,7 @@ button {
 ### Light Theme
 
 ```
-.themer-light button {
+.themer--light button {
   color: black;
 }
 ```
@@ -65,7 +67,7 @@ button {
 ### Custom Theme
 
 ```
-.themer-custom button {
-  color: red;
+.themer--custom button {
+  color: orange;
 }
 ```

@@ -1,15 +1,15 @@
-.themer-custom main {
+.themer--custom main {
   background-color: #b95c2f;
   color: #332016;
 }
 
-.themer-custom button {
+.themer--custom button {
   background-color: #da7f54;
   border-color: #865037;
   color: #332016;
 }
 
-.themer-custom button.active {
+.themer--custom button.active {
   border-color: #f9d5c4;
   color: #fff;
 }

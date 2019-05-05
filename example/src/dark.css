@@ -1,15 +1,15 @@
-.themer-dark main {
+.themer--dark main {
   background-color: #242835;
   color: #f1f1f1;
 }
 
-.themer-dark button {
+.themer--dark button {
   background-color: #393e4d;
   border-color: #464d5f;
   color: #f1f1f1;
 }
 
-.themer-dark table,
-.themer-dark pre {
+.themer--dark table,
+.themer--dark pre {
   background-color: rgba(255, 255, 255, 0.05);
 }
