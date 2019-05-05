@@ -1,6 +1,6 @@
 {
   "name": "react-themer.js--example",
-  "version": "0.30.0",
+  "version": "0.31.0",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
