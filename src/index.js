@@ -45,7 +45,7 @@ export default class Themer extends Component {
 
   setTheme() {
     clearInterval(this.interval);
-    switch (this.props.mode) {
+    switch (this.props.theme) {
       case "auto":
         this.autoTheme();
         break;
@@ -59,7 +59,7 @@ export default class Themer extends Component {
         this.setState({ theme: "light" });
         break;
       default:
-        this.setState({ theme: this.props.mode });
+        this.setState({ theme: this.props.theme });
         break;
     }
   }
@@ -69,7 +69,7 @@ export default class Themer extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.mode !== this.props.mode) {
+    if (prevProps.theme !== this.props.theme) {
       this.setTheme();
     }
   }

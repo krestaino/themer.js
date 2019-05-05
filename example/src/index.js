@@ -13,7 +13,7 @@ class App extends Component {
     const { active, themes } = this.state;
 
     return (
-      <Themer mode={active}>
+      <Themer theme={active}>
         <main>
           <div>
             {themes.map(theme => (
