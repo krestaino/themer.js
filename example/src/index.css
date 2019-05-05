@@ -146,10 +146,6 @@ table tbody tr:nth-child(odd) {
   background-color: rgba(0, 0, 0, 0.05);
 }
 
-table code {
-  white-space: nowrap;
-}
-
 table code,
 p code {
   background-color: rgba(0, 0, 0, 0.1);
