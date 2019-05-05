@@ -13,3 +13,7 @@
   border-color: #f9d5c4;
   color: #fff;
 }
+
+.themer--custom a:hover {
+  color: #fff;
+}

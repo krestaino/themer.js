@@ -30,13 +30,23 @@ main {
   transition: background-color 0.3s, color 0.3s;
 }
 
-h1 {
+.meta h1 {
+  display: inline-block;
+  font-size: 2rem;
   font-weight: 300;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.5rem;
 }
 
-h1+a {
-  display: block;
+.meta a {
+  display: inline-block;
+  margin-left: 1rem;
+}
+
+.meta p {
+  margin: 0 0 2rem 0;
+}
+
+.buttons {
   margin-bottom: 2rem;
 }
 
@@ -50,10 +60,17 @@ button {
   font-size: 16px;
   padding: 0.75rem 1.5rem;
   text-transform: capitalize;
-  transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+  transition: background-color 0.3s,
+    border-color 0.3s,
+    color 0.3s,
+    transform 0.3s;
 }
 
-[class^='themer--'] button.active {
+button:hover {
+  transform: translateY(-0.25rem);
+}
+
+[class^="themer--"] button.active {
   border-color: rgb(5, 111, 182);
 }
 
@@ -64,6 +81,10 @@ button+button {
 a {
   color: inherit;
   font-weight: bold;
+}
+
+a:hover {
+  color: rgb(5, 111, 182);
 }
 
 table,
@@ -83,10 +104,17 @@ pre {
   padding: 1rem;
 }
 
-button:last-of-type+h1,
-button:last-of-type+h1+h2,
-button:last-of-type+h1+h2+p {
+.readme h1,
+.readme h1+h2,
+.readme h1+h2+p {
   display: none;
+}
+
+footer svg {
+  display: block;
+  opacity: 0.5;
+  margin: 2rem auto;
+  width: 1rem;
 }
 
 @media only screen and (max-width: 600px) {
