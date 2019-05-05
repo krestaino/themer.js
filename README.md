@@ -1,13 +1,13 @@
 # Themer.js
 
-## Demo<a name="demo"></a>
+## Demo
 
 [https://themer.js.kmr.io](https://themer.js.kmr.io)
 ([source](https://github.com/krestaino/themer.js/tree/master/example))
 
-# Getting Started<a name="getting-started"></a>
+# Getting Started
 
-### Install Dependencies<a name="install-dependencies"></a>
+### Install Dependencies
 
 ```
 # using yarn
@@ -17,9 +17,9 @@ $ yarn add react-themer.js
 $ npm install react-themer.js
 ```
 
-### Using Themer.js<a name="using-themer-js"></a>
+### Using Themer.js
 
-#### Simple<a name="simple"></a>
+#### Simple
 
 The default theme adds a CSS selector for you to target light and dark themes depending on the sunset and sunrise.
 
@@ -33,7 +33,7 @@ import Themer from "react-themer.js";
 </Themer>
 ```
 
-#### Dynamic Themes<a name="dynamic-themes"></a>
+#### Dynamic Themes
 
 If you want some more control, you can pass available themes using the `active` prop.
 Here the theme has been set to `dark` and on `<button>` clicks, the theme is set to `auto`. The `android` prop is used to set the toolbar color in Chrome.
@@ -65,7 +65,7 @@ export default class App extends Component {
 }
 ```
 
-# Default Props<a name="props"></a>
+# Default Props
 
 | Prop      | Type     | Default                                                          | Description                                                                                                                                                      |
 | --------- | -------- | ---------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -73,7 +73,7 @@ export default class App extends Component {
 | `android` | `object` | `{ "dark": "#242835", "light": "#f1f1f1", "custom": "#b95c2f" }` | Used to set the toolbar color in Chrome on Android. ([info](https://developers.google.com/web/updates/2014/11/Support-for-theme-color-in-Chrome-39-for-Android)) |
 | `themes`  | `array`  | `[ "auto", "system", "light", "dark", "custom" ]`                | Available themes.                                                                                                                                                |
 
-# Themes<a name="themes"></a>
+# Themes
 
 ## Default
 
@@ -119,7 +119,7 @@ export default class App extends Component {
 }
 ```
 
-## Styles<a name="styles"></a>
+## Styles
 
 To target a specific theme, simply use the theme's CSS selector.
 
