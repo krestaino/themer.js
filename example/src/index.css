@@ -128,13 +128,16 @@ button {
   cursor: pointer;
   outline: 0;
   font-family: inherit;
-  font-size: 1rem;
   padding: 0.75rem 1.5rem;
   text-transform: capitalize;
   transition: background-color 0.3s,
     border-color 0.3s,
     color 0.3s,
     transform 0.3s;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: -0.4px
 }
 
 button:hover {
@@ -161,6 +164,7 @@ a:hover {
 table,
 pre {
   background-color: rgba(0, 0, 0, 0.05);
+  font-size: 0.9rem;
   transition: background-color 0.3s;
 }
 
@@ -200,9 +204,32 @@ pre code {
   white-space: pre-wrap;
 }
 
+code {
+  font-size: .9rem;
+}
+
 .readme>h1,
 .readme>h1+p {
   display: none;
+}
+
+.readme h2 {
+  padding-top: 7rem;
+  position: relative;
+  margin-top: -5rem;
+}
+
+.readme h2 a {
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.readme h3 {
+  margin-bottom: 1rem;
+  margin-top: 1.5rem;
 }
 
 footer {
@@ -210,6 +237,7 @@ footer {
   display: flex;
   flex-direction: column;
   font-family: monospace;
+  font-size: 0.8rem;
   justify-content: center;
   line-height: 1.5;
   opacity: 0.5;
@@ -220,6 +248,12 @@ footer svg {
   display: block;
   margin-top: 0.5rem;
   width: 1rem;
+}
+
+@media only screen and (min-width: 1160px) {
+  code {
+    white-space: pre;
+  }
 }
 
 @media only screen and (max-width: 1000px) {
