@@ -56,7 +56,7 @@ class App extends Component {
         <main>
           <section>
             <header>
-              <div className="meta">
+              <div className="meta container">
                 <h1>
                   Themer.js <span>v{PACKAGE.version}</span>
                 </h1>
@@ -68,7 +68,7 @@ class App extends Component {
                   {PACKAGE.description}
                 </p>
               </div>
-              <div className="buttons">
+              <div className="buttons container">
                 {themer.themes.map(theme => (
                   <button
                     className={theme === active ? "active" : ""}
@@ -80,7 +80,7 @@ class App extends Component {
                 ))}
               </div>
             </header>
-            <div className="readme">
+            <div className="readme container">
               <ReactMarkdown source={markdown} escapeHtml={false} />
             </div>
             <footer>
