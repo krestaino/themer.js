@@ -95,7 +95,7 @@ function (_Component) {
               case 11:
                 _context.prev = 11;
                 _context.t0 = _context["catch"](0);
-                this.setThemeColor(this.props.colors.light, "light");
+                this.setThemeColor(this.props.android.light, "light");
                 console.error(_context.t0);
 
               case 15:
@@ -115,9 +115,9 @@ function (_Component) {
   }, {
     key: "setSystemTheme",
     value: function setSystemTheme() {
-      var _this$props$colors = this.props.colors,
-          dark = _this$props$colors.dark,
-          light = _this$props$colors.light;
+      var _this$props$android = this.props.android,
+          dark = _this$props$android.dark,
+          light = _this$props$android.light;
       window.matchMedia("(prefers-color-scheme: dark)").matches ? this.setThemeColor(dark, "dark") : this.setThemeColor(light, "light");
     }
   }, {
@@ -133,7 +133,7 @@ function (_Component) {
     value: function setTheme() {
       var _this$props = this.props,
           active = _this$props.active,
-          colors = _this$props.colors;
+          android = _this$props.android;
       clearInterval(this.interval);
 
       switch (active) {
@@ -146,7 +146,7 @@ function (_Component) {
           break;
 
         default:
-          this.setThemeColor(colors[active], active);
+          this.setThemeColor(android[active], active);
           break;
       }
     }
@@ -154,9 +154,9 @@ function (_Component) {
     key: "getSunriseSunset",
     value: function getSunriseSunset(latitude, longitude) {
       var date = new Date();
-      var _this$props$colors2 = this.props.colors,
-          dark = _this$props$colors2.dark,
-          light = _this$props$colors2.light;
+      var _this$props$android2 = this.props.android,
+          dark = _this$props$android2.dark,
+          light = _this$props$android2.light;
 
       var _SunCalc$getTimes = _suncalc["default"].getTimes(date, latitude, longitude),
           sunrise = _SunCalc$getTimes.sunrise,
@@ -210,10 +210,8 @@ exports["default"] = Themer;
 
 _defineProperty(Themer, "defaultProps", {
   active: "auto",
-  colors: {
+  android: {
     dark: "#242835",
-    light: "#f1f1f1",
-    custom: "#b95c2f"
-  },
-  themes: ["auto", "system", "light", "dark", "custom"]
+    light: "#f1f1f1"
+  }
 });

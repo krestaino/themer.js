@@ -17,13 +17,13 @@ export default class Themer extends Component {
         this.getSunriseSunset(latitude, longitude);
       }, 60000);
     } catch (error) {
-      this.setThemeColor(this.props.colors.light, "light");
+      this.setThemeColor(this.props.android.light, "light");
       console.error(error);
     }
   }
 
   setSystemTheme() {
-    const { dark, light } = this.props.colors;
+    const { dark, light } = this.props.android;
 
     window.matchMedia("(prefers-color-scheme: dark)").matches
       ? this.setThemeColor(dark, "dark")
@@ -38,7 +38,7 @@ export default class Themer extends Component {
   }
 
   setTheme() {
-    const { active, colors } = this.props;
+    const { active, android } = this.props;
     clearInterval(this.interval);
 
     switch (active) {
@@ -49,14 +49,14 @@ export default class Themer extends Component {
         this.setSystemTheme();
         break;
       default:
-        this.setThemeColor(colors[active], active);
+        this.setThemeColor(android[active], active);
         break;
     }
   }
 
   getSunriseSunset(latitude, longitude) {
     const date = new Date();
-    const { dark, light } = this.props.colors;
+    const { dark, light } = this.props.android;
     const { sunrise, sunset } = SunCalc.getTimes(date, latitude, longitude);
 
     date < sunrise || date > sunset
@@ -98,11 +98,9 @@ export default class Themer extends Component {
 
   static defaultProps = {
     active: "auto",
-    colors: {
+    android: {
       dark: "#242835",
-      light: "#f1f1f1",
-      custom: "#b95c2f"
-    },
-    themes: ["auto", "system", "light", "dark", "custom"]
+      light: "#f1f1f1"
+    }
   };
 }

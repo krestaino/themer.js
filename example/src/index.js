@@ -15,7 +15,7 @@ class App extends Component {
     active: "auto",
     markdown: null,
     themer: {
-      colors: { dark: "#242835", light: "#f1f1f1", custom: "#b95c2f" },
+      android: { dark: "#242835", light: "#f1f1f1", custom: "#b95c2f" },
       themes: ["auto", "system", "light", "dark", "custom"]
     }
   };
@@ -49,7 +49,7 @@ class App extends Component {
 
   render() {
     const { active, markdown, themer } = this.state;
-    const props = { active, colors: themer.colors, themes: themer.themes };
+    const props = { active, android: themer.android, themes: themer.themes };
 
     return (
       <Themer {...props}>
