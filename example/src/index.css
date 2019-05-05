@@ -27,6 +27,7 @@ main {
   justify-content: center;
   min-height: 100vh;
   padding: 2rem 1rem;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 h1 {
@@ -49,10 +50,11 @@ button {
   font-size: 16px;
   padding: 0.75rem 1.5rem;
   text-transform: capitalize;
+  transition: background-color 0.3s, border-color 0.3s, color 0.3s;
 }
 
-button.active {
-  border-color: rgb(5, 111, 182) !important;
+[class^='themer-'] button.active {
+  border-color: rgb(5, 111, 182);
 }
 
 button+button {
@@ -67,6 +69,7 @@ a {
 table,
 pre {
   background-color: rgba(0, 0, 0, 0.05);
+  transition: background-color 0.3s;
 }
 
 table {
