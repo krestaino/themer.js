@@ -16,6 +16,7 @@ class App extends Component {
       <Themer theme={active}>
         <main>
           <div>
+            <h1>Themer.js</h1>
             {themes.map(theme => (
               <button
                 className={theme === active ? "active" : ""}
