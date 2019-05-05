@@ -51,6 +51,11 @@ main {
   margin: 0 0 2rem 0;
 }
 
+.meta .emoji {
+  display: inline-block;
+  width: 1rem;
+}
+
 .buttons {
   margin-bottom: 2rem;
 }

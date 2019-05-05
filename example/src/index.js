@@ -56,7 +56,8 @@ class App extends Component {
                   github.com/krestaino/themer.js
                 </a>
                 <p>
-                  {this.getEmoji()} {PACKAGE.description}
+                  <span className="emoji">{this.getEmoji()}</span>{" "}
+                  {PACKAGE.description}
                 </p>
               </div>
               <div className="buttons">
