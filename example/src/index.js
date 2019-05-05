@@ -41,7 +41,7 @@ class App extends Component {
   }
 
   render() {
-    const { active, themes } = this.state;
+    const { active, markdown, themes } = this.state;
 
     return (
       <Themer theme={active}>
@@ -73,7 +73,7 @@ class App extends Component {
               </div>
             </header>
             <div className="readme">
-              <ReactMarkdown source={this.state.markdown} />
+              <ReactMarkdown source={markdown} />
             </div>
             <footer>
               <span>{PACKAGE.author.name}</span>
