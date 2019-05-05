@@ -145,7 +145,7 @@ function (_Component) {
     value: function setTheme() {
       clearInterval(this.interval);
 
-      switch (this.props.mode) {
+      switch (this.props.theme) {
         case "auto":
           this.autoTheme();
           break;
@@ -168,7 +168,7 @@ function (_Component) {
 
         default:
           this.setState({
-            theme: this.props.mode
+            theme: this.props.theme
           });
           break;
       }
@@ -181,7 +181,7 @@ function (_Component) {
   }, {
     key: "componentDidUpdate",
     value: function componentDidUpdate(prevProps) {
-      if (prevProps.mode !== this.props.mode) {
+      if (prevProps.theme !== this.props.theme) {
         this.setTheme();
       }
     }
