@@ -2,7 +2,7 @@
 
 ## Demo
 
-[themer.js.kmr.io](https://caniuse.com/#search=prefers-color-scheme) (Source can be found under the `example` folder.)
+[themer.js.kmr.io](https://themer.js.kmr.io) (Source can be found under the `example` folder.)
 
 ## Usage
 
