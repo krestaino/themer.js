@@ -1,11 +1,13 @@
 html {
   box-sizing: border-box;
+  overflow-y: scroll;
 }
 
 *,
 *:before,
 *:after {
   box-sizing: inherit;
+  backface-visibility: hidden;
 }
 
 body {
@@ -24,10 +26,28 @@ main {
   color: #666;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   min-height: 100vh;
   padding: 2rem 1rem;
   transition: background-color 0.3s, color 0.3s;
+}
+
+main section {
+  animation: 0.6s cubic-bezier(0.075, 0.82, 0.165, 1) 0.1s 1 fadeIn;
+  animation-fill-mode: forwards;
+  max-width: 1140px;
+  opacity: 0;
+  width: 100%;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }
 
 .meta h1 {
@@ -111,6 +131,7 @@ table {
   border-radius: 3px;
   border-spacing: 1rem;
   text-align: left;
+  width: 100%;
 }
 
 table code,
