@@ -13,11 +13,11 @@ import PACKAGE from "../node_modules/react-themer.js/package.json";
 class App extends Component {
   state = {
     active: "auto",
+    markdown: null,
     themer: {
-      themes: ["auto", "system", "light", "dark", "custom"],
-      colors: { dark: "#242835", light: "#f1f1f1", custom: "#b95c2f" }
-    },
-    markdown: ""
+      colors: { dark: "#242835", light: "#f1f1f1", custom: "#b95c2f" },
+      themes: ["auto", "system", "light", "dark", "custom"]
+    }
   };
 
   componentDidMount() {
@@ -43,11 +43,16 @@ class App extends Component {
     }
   }
 
+  setActiveTheme(theme) {
+    this.setState({ active: theme });
+  }
+
   render() {
     const { active, markdown, themer } = this.state;
+    const props = { active, colors: themer.colors, themes: themer.themes };
 
     return (
-      <Themer config={themer} theme={active}>
+      <Themer {...props}>
         <main>
           <section>
             <header>
@@ -68,7 +73,7 @@ class App extends Component {
                   <button
                     className={theme === active ? "active" : ""}
                     key={theme}
-                    onClick={() => this.setState({ active: theme })}
+                    onClick={() => this.setActiveTheme(theme)}
                   >
                     {theme}
                   </button>
