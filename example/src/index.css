@@ -127,6 +127,10 @@ pre {
   padding: 1rem;
 }
 
+pre code {
+  white-space: pre-wrap;
+}
+
 .readme h1,
 .readme h1+h2,
 .readme h1+h2+p {
