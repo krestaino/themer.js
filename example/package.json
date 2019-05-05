@@ -12,7 +12,7 @@
     "react-dom": "^16.8.6",
     "react-markdown": "^4.0.8",
     "react-scripts": "3.0.0",
-    "react-themer.js": "^0.23.0"
+    "react-themer.js": "^0.25.0"
   },
   "eslintConfig": {
     "extends": "react-app"
