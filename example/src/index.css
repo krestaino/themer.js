@@ -164,6 +164,7 @@ footer {
   flex-direction: column;
   font-family: monospace;
   justify-content: center;
+  line-height: 1.5;
   opacity: 0.5;
   margin: 1rem;
 }
