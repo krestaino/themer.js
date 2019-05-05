@@ -1,0 +1,61 @@
+<!DOCTYPE html><html lang="en" style="background-color:#f1f1f1"><head><meta charset="utf-8"><link rel="shortcut icon" href="/favicon.ico"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#f1f1f1"><link rel="manifest" href="/manifest.json"><title>Themer.js</title><style>.lds-ripple{display:inline-block;position:absolute;width:64px;height:64px;top:50%;left:50%;margin:-32px;z-index:-1}.lds-ripple div{position:absolute;border:4px solid #242835;opacity:1;border-radius:50%;animation:lds-ripple 1s cubic-bezier(0,.2,.8,1) infinite}.lds-ripple div:nth-child(2){animation-delay:-.5s}@keyframes lds-ripple{0%{top:28px;left:28px;width:0;height:0;opacity:1}100%{top:-1px;left:-1px;width:58px;height:58px;opacity:0}}</style><link href="/static/css/main.534af9e8.chunk.css" rel="stylesheet"></head><body><noscript>You need to enable JavaScript to run this app.</noscript><div id="root"><div class="themer--light"><main><section><header><div class="meta container"><h1>Themer.js <span>v0.35.0</span></h1><a href="https://github.com/krestaino/themer.js">github.com/krestaino/themer.js</a><p><span class="emoji">🌗</span> Automatically switch between dark and light themes at sunset and sunrise using the user's location.</p></div><div class="buttons container"><button class="active">auto</button><button class="">system</button><button class="">light</button><button class="">dark</button><button class="">custom</button></div></header><div class="readme container"><h1>Themer.js</h1><p>Demo: <a href="https://themer.js.kmr.io">https://themer.js.kmr.io</a> (<a href="https://github.com/krestaino/themer.js">source</a>)</p><h2>Getting Started</h2><h3>Install Dependencies</h3><pre><code># using yarn
+$ yarn add react-themer.js
+
+# using npm
+$ npm install react-themer.js</code></pre><h2>Using Themer.js</h2><h3>Static Theme</h3><p>The default theme <code>auto</code> adds a CSS selector for you to target <code>light</code> and <code>dark</code> themes depending on the <code>sunset</code> and <code>sunrise</code>.</p><p>See more: <a href="#styles">Styles</a></p><pre><code>import Themer from "react-themer.js";
+
+&lt;Themer&gt;
+  ...
+&lt;/Themer&gt;</code></pre><h3>Dynamic Themes</h3><p>If you want some more control, you can pass available themes using the <code>active</code> prop.
+Here the theme has been set to <code>dark</code> and on <code>&lt;button&gt;</code> clicks, the theme is set to <code>auto</code>. The <code>android</code> prop is used to set the toolbar color in Chrome.</p><p>See more: <a href="#props">Props</a></p><pre><code>import React, { Component } from "react";
+import ReactDOM from "react-dom";
+import Themer from "react-themer.js";
+
+export default class App extends Component {
+  state = {
+    active: "dark",
+    android: { dark: "#242835" }
+  };
+
+  render() {
+    const { active, android } = this.state;
+
+    return (
+      &lt;Themer active={active} android={android}&gt;
+        &lt;button onClick={() =&gt; this.setState({ active: "auto" })}&gt;
+          Auto
+        &lt;/button&gt;
+      &lt;/Themer&gt;
+    )
+  }
+}</code></pre><h2><span><a name="props"></a></span><span></span>Props</h2><table><thead><tr><th>Prop</th><th>Type</th><th>Default</th><th>Description</th></tr></thead><tbody><tr><td><code>active</code></td><td><code>string</code></td><td><code>"auto"</code></td><td>The active theme.</td></tr><tr><td><code>android</code></td><td><code>object</code></td><td><code>{ "dark": "#242835", "light": "#f1f1f1", "custom": "#b95c2f" }</code></td><td>Used to set the toolbar color in Chrome on Android. (req: <a href="https://caniuse.com/#feat=meta-theme-color">theme-color</a>)</td></tr><tr><td><code>themes</code></td><td><code>array</code></td><td><code>[ "auto", "system", "light", "dark", "custom" ]</code></td><td>Available themes.</td></tr></tbody></table><h2>Themes</h2><h3>Default</h3><table><thead><tr><th>Theme</th><th>CSS Selector</th><th>Description</th></tr></thead><tbody><tr><td><code>auto</code></td><td><code>themer--light</code> | <code>themer--dark</code></td><td>Uses user's location to find sunset and sunrise times and automatically sets the theme to <code>light</code> or <code>dark</code>.</td></tr><tr><td><code>system</code></td><td><code>themer--light</code> | <code>themer--dark</code></td><td>Uses system theme. (req: <a href="https://caniuse.com/#search=prefers-color-scheme">prefers-color-scheme</a>)</td></tr><tr><td><code>light</code></td><td><code>themer--light</code></td><td>Sets the theme to <code>light</code>.</td></tr><tr><td><code>dark</code></td><td><code>themer--dark</code></td><td>Sets the theme to <code>dark</code>.</td></tr><tr><td><code>custom</code></td><td><code>themer--custom</code></td><td>Sets the theme to <code>custom</code>.</td></tr></tbody></table><h3>Custom</h3><p>You can create a new theme by passing a string to the <code>active</code> prop.</p><pre><code>import React, { Component } from "react";
+import ReactDOM from "react-dom";
+import Themer from "react-themer.js";
+
+export default class App extends Component {
+  state = {
+    active: "custom",
+    android: { custom: "#b95c2f" }
+  };
+
+  render() {
+    const { active, android } = this.state;
+
+    return (
+      &lt;Themer active={active} android={android}&gt;
+        Auto
+      &lt;/Themer&gt;
+    )
+  }
+}</code></pre><pre><code>.themer--custom main {
+  background-color: #b95c2f;
+  color: #332016;
+}</code></pre><h2><span><a name="styles"></a></span>Styles<span></span></h2><p>To target a specific theme, simply use the theme's CSS selector.</p><h4>No Theme</h4><pre><code>button {
+  color: gray;
+}</code></pre><h4>Dark Theme <code>"dark"</code></h4><pre><code>.themer--dark button {
+  color: white;
+}</code></pre><h4>Light Theme <code>"light"</code></h4><pre><code>.themer--light button {
+  color: black;
+}</code></pre><h4>Custom Theme <code>&lt;STRING&gt;</code></h4><pre><code>.themer--custom button {
+  color: orange;
+}</code></pre></div><footer><span>Kevin Restaino</span><span>kevin.restaino@gmail.com</span><svg aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path></svg></footer></section></main></div></div><div class="lds-ripple"><div></div><div></div></div><script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-93904346-5"></script><script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","UA-93904346-5")</script><script>!function(l){function e(e){for(var r,t,n=e[0],o=e[1],u=e[2],f=0,i=[];f<n.length;f++)t=n[f],p[t]&&i.push(p[t][0]),p[t]=0;for(r in o)Object.prototype.hasOwnProperty.call(o,r)&&(l[r]=o[r]);for(s&&s(e);i.length;)i.shift()();return c.push.apply(c,u||[]),a()}function a(){for(var e,r=0;r<c.length;r++){for(var t=c[r],n=!0,o=1;o<t.length;o++){var u=t[o];0!==p[u]&&(n=!1)}n&&(c.splice(r--,1),e=f(f.s=t[0]))}return e}var t={},p={1:0},c=[];function f(e){if(t[e])return t[e].exports;var r=t[e]={i:e,l:!1,exports:{}};return l[e].call(r.exports,r,r.exports,f),r.l=!0,r.exports}f.m=l,f.c=t,f.d=function(e,r,t){f.o(e,r)||Object.defineProperty(e,r,{enumerable:!0,get:t})},f.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},f.t=function(r,e){if(1&e&&(r=f(r)),8&e)return r;if(4&e&&"object"==typeof r&&r&&r.__esModule)return r;var t=Object.create(null);if(f.r(t),Object.defineProperty(t,"default",{enumerable:!0,value:r}),2&e&&"string"!=typeof r)for(var n in r)f.d(t,n,function(e){return r[e]}.bind(null,n));return t},f.n=function(e){var r=e&&e.__esModule?function(){return e.default}:function(){return e};return f.d(r,"a",r),r},f.o=function(e,r){return Object.prototype.hasOwnProperty.call(e,r)},f.p="/";var r=window.webpackJsonp=window.webpackJsonp||[],n=r.push.bind(r);r.push=e,r=r.slice();for(var o=0;o<r.length;o++)e(r[o]);var s=n;a()}([])</script><script src="/static/js/2.144b066e.chunk.js"></script><script src="/static/js/main.c8444f0e.chunk.js"></script></body></html>
