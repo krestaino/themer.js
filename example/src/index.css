@@ -53,6 +53,7 @@ main {
 
 .meta .emoji {
   display: inline-block;
+  text-align: center;
   width: 1rem;
 }
 
