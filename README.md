@@ -64,11 +64,11 @@ export default class App extends Component {
 
 ## Props
 
-| Prop      | Type     | Default                                                          | Description                                                                                                                                                      |
-| --------- | -------- | ---------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `active`  | `string` | `"auto"`                                                         | The active theme.                                                                                                                                                |
-| `android` | `object` | `{ "dark": "#242835", "light": "#f1f1f1", "custom": "#b95c2f" }` | Used to set the toolbar color in Chrome on Android. ([info](https://developers.google.com/web/updates/2014/11/Support-for-theme-color-in-Chrome-39-for-Android)) |
-| `themes`  | `array`  | `[ "auto", "system", "light", "dark", "custom" ]`                | Available themes.                                                                                                                                                |
+| Prop      | Type     | Default                                                          | Description                                                                                                          |
+| --------- | -------- | ---------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| `active`  | `string` | `"auto"`                                                         | The active theme.                                                                                                    |
+| `android` | `object` | `{ "dark": "#242835", "light": "#f1f1f1", "custom": "#b95c2f" }` | Used to set the toolbar color in Chrome on Android. (req: [theme-color](https://caniuse.com/#feat=meta-theme-color)) |
+| `themes`  | `array`  | `[ "auto", "system", "light", "dark", "custom" ]`                | Available themes.                                                                                                    |
 
 ## Themes
 
@@ -77,7 +77,7 @@ export default class App extends Component {
 | Theme    | CSS Selector                      | Description                                                                                                  |
 | -------- | --------------------------------- | ------------------------------------------------------------------------------------------------------------ |
 | `auto`   | `themer--light` \| `themer--dark` | Uses user's location to find sunset and sunrise times and automatically sets the theme to `light` or `dark`. |
-| `system` | `themer--light` \| `themer--dark` | Uses system theme. Relies on [prefers-color-scheme](https://caniuse.com/#search=prefers-color-scheme).       |
+| `system` | `themer--light` \| `themer--dark` | Uses system theme. (req: [prefers-color-scheme](https://caniuse.com/#search=prefers-color-scheme))           |
 | `light`  | `themer--light`                   | Sets the theme to `light`.                                                                                   |
 | `dark`   | `themer--dark`                    | Sets the theme to `dark`.                                                                                    |
 | `custom` | `themer--custom`                  | Sets the theme to `custom`.                                                                                  |
