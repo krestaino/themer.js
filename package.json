@@ -1,7 +1,7 @@
 {
   "name": "react-themer.js",
   "description": "Automatically switch between dark and light themes at sunset and sunrise using the user's location.",
-  "version": "0.33.0",
+  "version": "0.33.1",
   "main": "dist/index.js",
   "scripts": {
     "build": "./node_modules/.bin/babel src --out-file dist/index.js"

@@ -1,6 +1,6 @@
 {
   "name": "react-themer.js--example",
-  "version": "0.32.0",
+  "version": "0.33.1",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -13,7 +13,7 @@
     "react-dom": "^16.8.6",
     "react-markdown": "^4.0.8",
     "react-scripts": "3.0.0",
-    "react-themer.js": "^0.33.0"
+    "react-themer.js": "^0.33.1"
   },
   "eslintConfig": {
     "extends": "react-app"
