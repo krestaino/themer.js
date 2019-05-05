@@ -28,13 +28,13 @@ import Themer from "react-themer.js";
 
 ## Themes
 
-| Theme&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | CSS Selector&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Description                                                                                             |
-| ----------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------- |
-| `auto`                                                                                          |                                                                                                                                                                          | Uses geoloction to find sunset and sunrise times and automatically sets the theme to `light` or `dark`. |
-| `system`                                                                                        |                                                                                                                                                                          | Uses system theme. Relies on [prefers-color-scheme](https://caniuse.com/#search=prefers-color-scheme).  |
-| `light`                                                                                         | `themer--light`                                                                                                                                                          | Sets the theme to `light`.                                                                              |
-| `dark`                                                                                          | `themer--dark`                                                                                                                                                           | Sets the theme to `dark`.                                                                               |
-| `<STRING>`                                                                                      | `themer--<STRING>`                                                                                                                                                       | Sets the theme to `<STRING>`. Use to set custom themes.                                                 |
+| Theme      | CSS Selector       | Description                                                                                             |
+| ---------- | ------------------ | ------------------------------------------------------------------------------------------------------- |
+| `auto`     |                    | Uses geoloction to find sunset and sunrise times and automatically sets the theme to `light` or `dark`. |
+| `system`   |                    | Uses system theme. Relies on [prefers-color-scheme](https://caniuse.com/#search=prefers-color-scheme).  |
+| `light`    | `themer--light`    | Sets the theme to `light`.                                                                              |
+| `dark`     | `themer--dark`     | Sets the theme to `dark`.                                                                               |
+| `<STRING>` | `themer--<STRING>` | Sets the theme to `<STRING>`. Use to set custom themes.                                                 |
 
 ## Styles
 
