@@ -1,6 +1,6 @@
 {
   "name": "react-themer.js",
-  "version": "0.17.0",
+  "version": "0.18.0",
   "scripts": {
     "build": "./node_modules/.bin/babel src --out-file dist/index.js"
   },
