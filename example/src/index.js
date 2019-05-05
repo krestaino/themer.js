@@ -30,9 +30,9 @@ class App extends Component {
       case "system":
         return "💻";
       case "light":
-        return "☀️";
+        return "🌞";
       case "dark":
-        return "🌑";
+        return "🌒";
       case "custom":
         return "🎨";
       default:
