@@ -28,16 +28,41 @@ main {
   flex-direction: column;
   justify-content: flex-start;
   min-height: 100vh;
-  padding: 2rem 1rem;
+  padding: 0 1rem;
   transition: background-color 0.3s, color 0.3s;
 }
 
 main section {
   animation: 0.6s cubic-bezier(0.075, 0.82, 0.165, 1) 0.1s 1 fadeIn;
   animation-fill-mode: forwards;
+  background-color: inherit;
   max-width: 1140px;
   opacity: 0;
   width: 100%;
+}
+
+main header {
+  background-color: inherit;
+  display: flex;
+  flex-direction: column;
+  height: 12.5rem;
+  position: sticky;
+  top: calc(5rem - 12.5rem);
+  z-index: 10;
+  left: 0;
+  width: 100%;
+  padding: 1rem 0;
+}
+
+main header::before {
+  background-color: rgba(255, 255, 255, 0.5);
+  content: '';
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: -250%;
+  width: 500%;
+  z-index: -1;
 }
 
 @keyframes fadeIn {
@@ -69,7 +94,7 @@ main section {
 
 .meta p {
   line-height: 1.5;
-  margin: 0 0 2rem 0;
+  margin: 0;
 }
 
 .meta .emoji {
@@ -81,7 +106,7 @@ main section {
 }
 
 .buttons {
-  margin-bottom: 2rem;
+  margin-top: auto;
 }
 
 button {

@@ -3,6 +3,10 @@
   color: #180f0a;
 }
 
+.themer--custom main header::before {
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
 .themer--custom button {
   background-color: #da7f54;
   border-color: #865037;
