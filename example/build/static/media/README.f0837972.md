@@ -4,7 +4,7 @@ Demo: [https://themer.js.kmr.io](https://themer.js.kmr.io) ([source](https://git
 
 ## Getting Started
 
-### Install Dependencies
+### Install
 
 ```
 # using yarn
@@ -30,7 +30,7 @@ import Themer from "react-themer.js";
 </Themer>
 ```
 
-### Dynamic Themes
+### Dynamic Theme
 
 If you want some more control, you can pass available themes using the `active` prop.
 Here the theme has been set to `dark` and on `<button>` clicks, the theme is set to `auto`. The `android` prop is used to set the toolbar color in Chrome.
