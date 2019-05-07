@@ -1,15 +1,15 @@
 #readme {
   padding-top: 1rem;
 
+  h1,
+  ul+h2,
+  ul+h2+p {
+    display: none;
+  }
+
   ul {
     line-height: 1.75;
     margin-bottom: 0;
-
-    h1,
-    &+h2,
-    &+p {
-      display: none;
-    }
   }
 
   table {
