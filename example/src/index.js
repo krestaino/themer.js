@@ -10,7 +10,7 @@ import light from "./themes/light.json";
 import dark from "./themes/dark.json";
 import custom from "./themes/custom.json";
 
-import "./index.scss";
+import "./styles.scss";
 
 export default class App extends Component {
   state = {

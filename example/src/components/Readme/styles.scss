@@ -25,20 +25,23 @@
     }
 
     tbody tr:nth-child(odd) {
-      background-color: var(--table-zebra-background-color);
+      background-color: rgba(0, 0, 0, 0.05);
+      background-color: var(--table-zebra-background-color, rgba(0, 0, 0, 0.05));
     }
   }
 
   table,
   pre {
-    background-color: var(--table-pre-background-color);
+    background-color: #e6e6e6;
+    background-color: var(--table-pre-background-color, #e6e6e6);
     font-size: 0.9rem;
     transition: background-color 0.3s;
   }
 
   table code,
   p code {
-    background-color: var(--code-background-color);
+    background-color: rgba(0, 0, 0, 0.075);
+    background-color: var(--code-background-color, rgba(0, 0, 0, 0.075));
     border-radius: 3px;
     line-height: 2;
     padding: 4px;
