@@ -1,0 +1,75 @@
+#readme {
+  table {
+    border-radius: 3px;
+    border-spacing: 0;
+    text-align: left;
+    width: 100%;
+
+    th,
+    td {
+      padding: 1rem;
+      vertical-align: top;
+    }
+
+    tbody tr:nth-child(odd) {
+      background-color: var(--table-zebra-background-color);
+    }
+  }
+
+  table,
+  pre {
+    background-color: var(--table-pre-background-color);
+    font-size: 0.9rem;
+    transition: background-color 0.3s;
+  }
+
+  table code,
+  p code {
+    background-color: var(--code-background-color);
+    border-radius: 3px;
+    line-height: 2;
+    padding: 4px;
+    transition: background-color 0.3s;
+  }
+
+  pre {
+    border-radius: 3px;
+    padding: 1rem;
+
+    code {
+      white-space: pre-wrap;
+    }
+  }
+
+  code {
+    font-size: .9rem;
+
+    @media only screen and (min-width: 1160px) {
+      white-space: pre;
+    }
+  }
+
+  &>h1,
+  &>h1+p {
+    display: none;
+  }
+
+  h2 {
+    padding-top: 7rem;
+    position: relative;
+    margin-top: -5rem;
+
+    a {
+      height: 100%;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 100%;
+    }
+  }
+
+  h3 {
+    margin-bottom: 1rem;
+    margin-top: 1.5rem;
+  }
+}

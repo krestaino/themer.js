@@ -1,109 +1,59 @@
 import React, { Component } from "react";
-import ReactDOM from "react-dom";
-import ReactMarkdown from "react-markdown";
+import { hydrate, render } from "react-dom";
 import Themer from "react-themer.js";
 
-import "./index.css";
-import "./dark.css";
-import "./custom.css";
+import Header from "./components/Header";
+import Readme from "./components/Readme";
+import Footer from "./components/Footer";
 
-import README from "../node_modules/react-themer.js/README.md";
-import PACKAGE from "../node_modules/react-themer.js/package.json";
+import light from "./themes/light.json";
+import dark from "./themes/dark.json";
+import custom from "./themes/custom.json";
 
-class App extends Component {
+import "./index.scss";
+
+export default class App extends Component {
   state = {
     active: "auto",
-    markdown: null,
-    themer: {
-      android: { dark: "#242835", light: "#f1f1f1", custom: "#b95c2f" },
-      themes: ["auto", "system", "light", "dark", "custom"]
-    }
+    icon: "🌗",
+    themes: { dark, light, custom }
   };
 
-  componentDidMount() {
-    fetch(README)
-      .then(res => res.text())
-      .then(text => this.setState({ markdown: text }));
-  }
-
-  getEmoji() {
-    switch (this.state.active) {
-      case "auto":
-        return "🌗";
-      case "system":
-        return "💻";
-      case "light":
-        return "🌞";
-      case "dark":
-        return "🌒";
-      case "custom":
-        return "🎨";
-      default:
-        return "🌗";
-    }
-  }
-
-  setActiveTheme(theme) {
-    this.setState({ active: theme });
-  }
-
   render() {
-    const { active, markdown, themer } = this.state;
-    const props = { active, android: themer.android, themes: themer.themes };
+    const { active, icon, themes } = this.state;
+
+    const Button = (theme, name, icon) => {
+      return (
+        <button
+          className={theme === active ? "active" : undefined}
+          onClick={() => this.setState({ active: theme, icon })}
+        >
+          {name}
+        </button>
+      );
+    };
 
     return (
-      <Themer {...props}>
-        <main>
-          <section>
-            <header>
-              <div className="meta container">
-                <h1>
-                  Themer.js <span>v{PACKAGE.version}</span>
-                </h1>
-                <a href="https://github.com/krestaino/themer.js">
-                  github.com/krestaino/themer.js
-                </a>
-                <p>
-                  <span className="emoji">{this.getEmoji()}</span>{" "}
-                  {PACKAGE.description}
-                </p>
-              </div>
-              <div className="buttons container">
-                {themer.themes.map(theme => (
-                  <button
-                    className={theme === active ? "active" : ""}
-                    key={theme}
-                    onClick={() => this.setActiveTheme(theme)}
-                  >
-                    {theme}
-                  </button>
-                ))}
-              </div>
-            </header>
-            <div className="readme container">
-              <ReactMarkdown source={markdown} escapeHtml={false} />
-            </div>
-            <footer>
-              <span>{PACKAGE.author.name}</span>
-              <span>{PACKAGE.author.email}</span>
-              <svg
-                aria-hidden="true"
-                focusable="false"
-                role="img"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 512 512"
-              >
-                <path
-                  fill="currentColor"
-                  d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"
-                />
-              </svg>
-            </footer>
-          </section>
-        </main>
-      </Themer>
+      <main>
+        <Themer active={active} themes={themes} />
+        <Header icon={icon}>
+          {Button("auto", "Auto", "🌗")}
+          {Button("system", "System", "💻")}
+          {Button(light, "Light", "🌞")}
+          {Button(dark, "Dark", "🌒")}
+          {Button(custom, "Custom", "🎨")}
+        </Header>
+        <Readme />
+        <Footer />
+      </main>
     );
   }
 }
 
-ReactDOM.render(<App />, document.getElementById("root"));
+const rootElement = document.getElementById("root");
+
+if (rootElement.hasChildNodes()) {
+  hydrate(<App />, rootElement);
+} else {
+  render(<App />, rootElement);
+}

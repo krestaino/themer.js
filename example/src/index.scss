@@ -1,0 +1,81 @@
+html {
+  box-sizing: border-box;
+  overflow-y: scroll;
+  font-size: 16px;
+  height: 100%;
+  width: 100%;
+
+  @media only screen and (max-width: 1000px) {
+    font-size: 15px;
+  }
+
+  @media only screen and (max-width: 600px) {
+    font-size: 14px;
+  }
+
+  @media only screen and (max-width: 340px) {
+    font-size: 13px;
+  }
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+  backface-visibility: hidden;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+main {
+  align-items: center;
+  background-color: var(--app-background-color);
+  color: var(--primary-text-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-height: 100vh;
+  transition: background-color 0.3s, color 0.3s;
+
+  section {
+    animation: 0.6s cubic-bezier(0.075, 0.82, 0.165, 1) 0.1s 1 fadeIn;
+    animation-fill-mode: forwards;
+    opacity: 0;
+    width: 100%;
+
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+
+      100% {
+        opacity: 1;
+      }
+    }
+  }
+
+  .container {
+    margin: 0 auto;
+    max-width: 1140px;
+    overflow-x: hidden;
+    padding: 0 1rem;
+    width: 100%;
+  }
+
+  a {
+    color: inherit;
+    font-weight: bold;
+
+    &:hover {
+      color: var(--primary-accent-color);
+    }
+  }
+}

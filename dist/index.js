@@ -27,15 +27,13 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 var Themer =
 /*#__PURE__*/
@@ -43,32 +41,34 @@ function (_Component) {
   _inherits(Themer, _Component);
 
   function Themer() {
-    var _getPrototypeOf2;
-
-    var _this;
-
     _classCallCheck(this, Themer);
 
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(Themer)).call.apply(_getPrototypeOf2, [this].concat(args)));
-
-    _defineProperty(_assertThisInitialized(_this), "state", {
-      theme: "auto"
-    });
-
-    return _this;
+    return _possibleConstructorReturn(this, _getPrototypeOf(Themer).apply(this, arguments));
   }
 
   _createClass(Themer, [{
+    key: "init",
+    value: function init() {
+      clearInterval(this.interval);
+      var active = this.props.active;
+
+      if (!active) {
+        return;
+      } else if (active === "auto") {
+        this.setAutoTheme();
+      } else if (active === "system") {
+        this.setSystemTheme();
+      } else {
+        this.setTheme(active);
+      }
+    }
+  }, {
     key: "setAutoTheme",
     value: function () {
       var _setAutoTheme = _asyncToGenerator(
       /*#__PURE__*/
       regeneratorRuntime.mark(function _callee() {
-        var _this2 = this;
+        var _this = this;
 
         var _ref, _ref$coords, latitude, longitude;
 
@@ -87,7 +87,7 @@ function (_Component) {
                 longitude = _ref$coords.longitude;
                 this.getSunriseSunset(latitude, longitude);
                 this.interval = setInterval(function () {
-                  _this2.getSunriseSunset(latitude, longitude);
+                  _this.getSunriseSunset(latitude, longitude);
                 }, 60000);
                 _context.next = 15;
                 break;
@@ -95,7 +95,7 @@ function (_Component) {
               case 11:
                 _context.prev = 11;
                 _context.t0 = _context["catch"](0);
-                this.setThemeColor(this.props.android.light, "light");
+                this.setTheme(this.props.themes.light);
                 console.error(_context.t0);
 
               case 15:
@@ -113,58 +113,6 @@ function (_Component) {
       return setAutoTheme;
     }()
   }, {
-    key: "setSystemTheme",
-    value: function setSystemTheme() {
-      var _this$props$android = this.props.android,
-          dark = _this$props$android.dark,
-          light = _this$props$android.light;
-      window.matchMedia("(prefers-color-scheme: dark)").matches ? this.setThemeColor(dark, "dark") : this.setThemeColor(light, "light");
-    }
-  }, {
-    key: "setThemeColor",
-    value: function setThemeColor(color, theme) {
-      this.setState({
-        theme: theme
-      });
-      document.querySelector("meta[name=theme-color]").setAttribute("content", color);
-    }
-  }, {
-    key: "setTheme",
-    value: function setTheme() {
-      var _this$props = this.props,
-          active = _this$props.active,
-          android = _this$props.android;
-      clearInterval(this.interval);
-
-      switch (active) {
-        case "auto":
-          this.setAutoTheme();
-          break;
-
-        case "system":
-          this.setSystemTheme();
-          break;
-
-        default:
-          this.setThemeColor(android[active], active);
-          break;
-      }
-    }
-  }, {
-    key: "getSunriseSunset",
-    value: function getSunriseSunset(latitude, longitude) {
-      var date = new Date();
-      var _this$props$android2 = this.props.android,
-          dark = _this$props$android2.dark,
-          light = _this$props$android2.light;
-
-      var _SunCalc$getTimes = _suncalc["default"].getTimes(date, latitude, longitude),
-          sunrise = _SunCalc$getTimes.sunrise,
-          sunset = _SunCalc$getTimes.sunset;
-
-      date < sunrise || date > sunset ? this.setThemeColor(dark, "dark") : this.setThemeColor(light, "light");
-    }
-  }, {
     key: "getLocation",
     value: function getLocation() {
       return new Promise(function (resolve, reject) {
@@ -172,34 +120,53 @@ function (_Component) {
       });
     }
   }, {
-    key: "getThemeClassName",
-    value: function getThemeClassName() {
-      switch (this.props.active) {
-        case value:
-          break;
+    key: "getSunriseSunset",
+    value: function getSunriseSunset(latitude, longitude) {
+      var date = new Date();
+      var _this$props$themes = this.props.themes,
+          dark = _this$props$themes.dark,
+          light = _this$props$themes.light;
 
-        default:
-          break;
-      }
+      var _SunCalc$getTimes = _suncalc["default"].getTimes(date, latitude, longitude),
+          sunrise = _SunCalc$getTimes.sunrise,
+          sunset = _SunCalc$getTimes.sunset;
+
+      date < sunrise || date > sunset ? this.setTheme(dark) : this.setTheme(light);
+    }
+  }, {
+    key: "setSystemTheme",
+    value: function setSystemTheme() {
+      var _this$props$themes2 = this.props.themes,
+          dark = _this$props$themes2.dark,
+          light = _this$props$themes2.light;
+      window.matchMedia("(prefers-color-scheme: dark)").matches ? this.setTheme(dark) : this.setTheme(light);
+    }
+  }, {
+    key: "setTheme",
+    value: function setTheme(theme) {
+      var root = document.querySelector("html");
+      var metaThemeColor = document.querySelector("meta[name=theme-color]");
+      Object.entries(theme.styles).forEach(function (style) {
+        root.style.setProperty(style[0], style[1]);
+      });
+      metaThemeColor.setAttribute("content", theme.android);
     }
   }, {
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.setTheme();
+      this.init();
     }
   }, {
     key: "componentDidUpdate",
     value: function componentDidUpdate(prevProps) {
       if (prevProps.active !== this.props.active) {
-        this.setTheme();
+        this.init();
       }
     }
   }, {
     key: "render",
     value: function render() {
-      return _react["default"].createElement("div", {
-        className: "themer--" + this.state.theme
-      }, this.props.children);
+      return null;
     }
   }]);
 
@@ -207,11 +174,3 @@ function (_Component) {
 }(_react.Component);
 
 exports["default"] = Themer;
-
-_defineProperty(Themer, "defaultProps", {
-  active: "auto",
-  android: {
-    dark: "#242835",
-    light: "#f1f1f1"
-  }
-});

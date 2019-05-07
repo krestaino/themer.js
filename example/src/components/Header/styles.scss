@@ -1,0 +1,106 @@
+#header {
+  background-color: var(--header-background-color);
+  display: flex;
+  flex-direction: column;
+  height: 12.5rem;
+  justify-content: space-between;
+  position: sticky;
+  top: calc(5rem - 12.5rem);
+  z-index: 10;
+  left: 0;
+  width: 100%;
+  padding: 1rem 0;
+  transition: background-color 0.3s;
+
+  @media only screen and (max-width: 800px) {
+    height: 14rem;
+    top: calc(5rem - 14rem);
+  }
+
+  @media only screen and (max-width: 400px) {
+    height: 15rem;
+    top: calc(5rem - 15rem);
+  }
+
+  @media only screen and (max-width: 360px) {
+    height: 15.5rem;
+    top: calc(5rem - 15.5rem);
+  }
+
+  h1 {
+    display: inline-block;
+    font-size: 2rem;
+    font-weight: 300;
+    margin: 0 0 0.5rem 0;
+
+    span {
+      font-family: monospace;
+      font-size: 1rem;
+    }
+  }
+
+  a {
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .emoji {
+    display: inline-block;
+    margin-right: 0.5rem;
+    text-align: center;
+    transform: translateY(-1px);
+    width: 1rem;
+  }
+
+  .buttons {
+    display: flex;
+    height: 4rem;
+    padding-top: 1rem;
+
+    button {
+      border: 2px solid var(--button-border-color);
+      border-radius: 3px;
+      background-color: var(--button-background-color);
+      color: var(--button-text-color);
+      cursor: pointer;
+      outline: 0;
+      font-family: inherit;
+      padding: 0.75rem 1.5rem;
+      text-transform: capitalize;
+      transition: background-color 0.3s,
+        border-color 0.3s,
+        color 0.3s,
+        transform 0.3s;
+      font-weight: bold;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      letter-spacing: -0.4px;
+
+      @media only screen and (max-width: 600px) {
+        padding: 0.75rem 0.25rem;
+        width: 20%;
+      }
+
+      &:hover {
+        transform: translateY(-0.25rem);
+      }
+
+      &.active {
+        border-color: var(--primary-accent-color);
+      }
+
+      &+button {
+        margin-left: 1rem;
+
+        @media only screen and (max-width: 600px) {
+          margin-left: 0.5rem;
+        }
+      }
+    }
+  }
+}
