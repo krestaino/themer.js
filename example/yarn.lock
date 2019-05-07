@@ -8463,10 +8463,10 @@ react-snap@^1.23.0:
     serve-static "1.13.2"
     sourcemapped-stacktrace-node "2.1.8"
 
-react-themer.js@^0.36.0:
-  version "0.36.0"
-  resolved "https://registry.yarnpkg.com/react-themer.js/-/react-themer.js-0.36.0.tgz#2f5667fdad6197a0b7ba365a40ddcc26ea4de27c"
-  integrity sha512-bbNWpKZFO8GDahqBj7Bq7xAX9hnb0WJnrb5CcyAFTnZq0y4kByPjlL3pcWzDCj2zCzSd111y98TXYGx8M2JGVg==
+react-themer.js@^1.0.0-alpha.1:
+  version "1.0.0-alpha.1"
+  resolved "https://registry.yarnpkg.com/react-themer.js/-/react-themer.js-1.0.0-alpha.1.tgz#10253ca6c0a038e1c98e96d57dcc67c64dea7d9e"
+  integrity sha512-UDYhNzstglvvAum4ymSwF9BBuSZEq7QJDRDvJk3OSkJg8NAeCODS6Fs4XhfELmF6NCsXArPR0UXUV5mZkKfRdA==
   dependencies:
     suncalc "^1.8.0"
 

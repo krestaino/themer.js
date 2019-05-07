@@ -18,7 +18,7 @@
     "react-dom": "^16.8.6",
     "react-markdown": "^4.0.8",
     "react-scripts": "3.0.0",
-    "react-themer.js": "^0.36.0"
+    "react-themer.js": "^1.0.0-alpha.1"
   },
   "eslintConfig": {
     "extends": "react-app"
