@@ -4,6 +4,12 @@
   ul {
     line-height: 1.75;
     margin-bottom: 0;
+
+    h1,
+    &+h2,
+    &+p {
+      display: none;
+    }
   }
 
   table {
@@ -54,10 +60,6 @@
     @media only screen and (min-width: 1160px) {
       white-space: pre;
     }
-  }
-
-  &>h1 {
-    display: none;
   }
 
   h2 {
