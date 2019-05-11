@@ -11,7 +11,7 @@ import "./styles.scss";
 
 const themer = new Themer({
   themes: { light, dark, custom },
-  debug: true
+  debug: false
 });
 
 export default class App extends Component {
@@ -40,8 +40,14 @@ export default class App extends Component {
           {themes.map(obj => (
             <button
               className={obj.theme === this.state.theme ? "active" : undefined}
+              disabled={themer.noSystemThemeSupport() && obj.theme === "system"}
               onClick={() => this.setTheme(obj.theme, obj.icon)}
               key={obj.name}
+              title={
+                themer.noSystemThemeSupport() && obj.theme === "system"
+                  ? "This theme is not supported by your browser."
+                  : `Set ${obj.name} as the active theme.`
+              }
             >
               {obj.name}
             </button>

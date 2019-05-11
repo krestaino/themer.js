@@ -76,11 +76,9 @@ class Themer {
         light
       } = this.themes;
 
-      const prefersColorScheme = theme => window.matchMedia(`(prefers-color-scheme: ${theme})`).matches;
-
-      if (prefersColorScheme("dark")) {
+      if (this.prefersColorScheme("dark")) {
         this.setTheme(dark);
-      } else if (prefersColorScheme("light")) {
+      } else if (this.prefersColorScheme("light")) {
         this.setTheme(light);
       } else {
         if (this.debug) console.error("System theme not supported by this browser. Requires prefers-color-scheme. https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme");
@@ -99,11 +97,19 @@ class Themer {
     _defineProperty(this, "setAndroid", theme => {
       if (theme.android) {
         const metaThemeColor = document.querySelector("meta[name=theme-color]");
-        metaThemeColor.setAttribute("content", theme.android);
-        if (this.debug) console.log("Android theme-color changed successfully.");
+        if (metaThemeColor) metaThemeColor.setAttribute("content", theme.android);
+        if (this.debug && metaThemeColor) console.log("Android theme-color changed successfully.");
       } else {
         if (this.debug) console.error("Android theme-color undefined.");
       }
+    });
+
+    _defineProperty(this, "prefersColorScheme", theme => {
+      return window.matchMedia(`(prefers-color-scheme: ${theme})`).matches;
+    });
+
+    _defineProperty(this, "noSystemThemeSupport", () => {
+      return this.prefersColorScheme("dark") || this.prefersColorScheme("light") ? false : true;
     });
 
     this.themes = config.themes;

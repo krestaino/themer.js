@@ -59,12 +59,9 @@ export default class Themer {
   setSystemTheme = () => {
     const { dark, light } = this.themes;
 
-    const prefersColorScheme = theme =>
-      window.matchMedia(`(prefers-color-scheme: ${theme})`).matches;
-
-    if (prefersColorScheme("dark")) {
+    if (this.prefersColorScheme("dark")) {
       this.setTheme(dark);
-    } else if (prefersColorScheme("light")) {
+    } else if (this.prefersColorScheme("light")) {
       this.setTheme(light);
     } else {
       if (this.debug)
@@ -89,10 +86,21 @@ export default class Themer {
   setAndroid = theme => {
     if (theme.android) {
       const metaThemeColor = document.querySelector("meta[name=theme-color]");
-      metaThemeColor.setAttribute("content", theme.android);
-      if (this.debug) console.log("Android theme-color changed successfully.");
+      if (metaThemeColor) metaThemeColor.setAttribute("content", theme.android);
+      if (this.debug && metaThemeColor)
+        console.log("Android theme-color changed successfully.");
     } else {
       if (this.debug) console.error("Android theme-color undefined.");
     }
+  };
+
+  prefersColorScheme = theme => {
+    return window.matchMedia(`(prefers-color-scheme: ${theme})`).matches;
+  };
+
+  noSystemThemeSupport = () => {
+    return this.prefersColorScheme("dark") || this.prefersColorScheme("light")
+      ? false
+      : true;
   };
 }
