@@ -2,8 +2,8 @@
   padding-top: 1rem;
 
   h1,
-  ul+h2,
-  ul+h2+p {
+  h2:first-of-type,
+  h2:first-of-type+p {
     display: none;
   }
 
@@ -69,6 +69,7 @@
     padding-top: 7rem;
     position: relative;
     margin-top: -5rem;
+    z-index: -1;
 
     a {
       height: 100%;
