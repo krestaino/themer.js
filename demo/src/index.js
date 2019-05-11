@@ -16,7 +16,7 @@ const themer = new Themer({
 
 export default class App extends Component {
   state = {
-    theme: undefined,
+    theme: light,
     icon: undefined
   };
 
@@ -27,10 +27,10 @@ export default class App extends Component {
 
   render() {
     const themes = [
-      { name: "Auto", theme: "auto", icon: "🌗" },
-      { name: "System", theme: "system", icon: "💻" },
       { name: "Light", theme: light, icon: "🌞" },
       { name: "Dark", theme: dark, icon: "🌒" },
+      { name: "Auto", theme: "auto", icon: "🌗" },
+      { name: "System", theme: "system", icon: "💻" },
       { name: "Custom", theme: custom, icon: "🎨" }
     ];
 
