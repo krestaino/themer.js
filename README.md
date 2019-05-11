@@ -24,21 +24,21 @@ $ yarn add themer.js
 $ npm install themer.js
 ```
 
-## Create the `light` and `dark` themes
+### Create the `light` and `dark` themes
 
-To use the `"auto"` or `"system"` themes, you must create two themes called `light` and `dark`.
+To use the `"auto"` or `"system"` themes, you must create two themes called `"light"` and `"dark"`.
 
 ```
 import Themer from "themer.js";
 
 const themes = {
-  light: {
+  "light": {
     "styles": {
       "--app-background-color": "#f1f1f1",
       "--primary-text-color": "#555"
     }
   },
-  dark: {
+  "dark": {
     "styles": {
       "--app-background-color": "#242835",
       "--primary-text-color": "#f1f1f1"
@@ -53,27 +53,27 @@ const themer = new Themer({
 
 **See also:** [Theme `object`](#theme)
 
-## Create a custom theme
+### Create a custom theme
 
-A custom theme can be called anything, it just needs to be a `string`. For this example, we'll use `custom`.
+A custom theme can be called anything, it just needs to be a `string`. For this example, we'll use `"custom"`.
 
 ```
 import Themer from "themer.js";
 
 const themes = {
-  light: {
+  "light": {
     "styles": {
       "--app-background-color": "#f1f1f1",
       "--primary-text-color": "#555"
     }
   },
-  dark: {
+  "dark": {
     "styles": {
       "--app-background-color": "#242835",
       "--primary-text-color": "#f1f1f1"
     }
   },
-  custom: {
+  "custom": {
     "styles": {
       "--app-background-color": "#d6713e",
       "--primary-text-color": "#180f0a"
