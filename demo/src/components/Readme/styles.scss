@@ -1,6 +1,7 @@
 #readme {
   padding-top: 1rem;
 
+  // hide demo section
   h1,
   h2:first-of-type,
   h2:first-of-type+p {
@@ -39,7 +40,9 @@
   }
 
   table code,
-  p code {
+  p code,
+  li>code,
+  h3>code {
     background-color: rgba(0, 0, 0, 0.075);
     background-color: var(--code-background-color, rgba(0, 0, 0, 0.075));
     border-radius: 3px;
@@ -66,9 +69,14 @@
   }
 
   h2 {
+    border-bottom: 1px solid var(--table-pre-background-color, #e6e6e6);
+    font-size: 2rem;
+    padding-bottom: 0.5rem;
     padding-top: 7rem;
     position: relative;
+    margin-bottom: 1.5rem;
     margin-top: -5rem;
+    transition: border-color 0.3s;
     z-index: -1;
 
     a {
@@ -78,10 +86,19 @@
       top: 0;
       width: 100%;
     }
+
+    &+h3 {
+      margin-top: 0;
+    }
   }
 
   h3 {
+    font-size: 1.5rem;
     margin-bottom: 1rem;
-    margin-top: 1.5rem;
+    margin-top: 2.5rem;
+
+    code {
+      font-size: 1.25rem;
+    }
   }
 }
