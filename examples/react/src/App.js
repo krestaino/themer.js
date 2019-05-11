@@ -12,11 +12,11 @@ const themer = new Themer({
 });
 
 const themes = [
-  { name: "Auto", theme: "auto", icon: "🌗" },
-  { name: "System", theme: "system", icon: "💻" },
-  { name: "Light", theme: light, icon: "🌞" },
-  { name: "Dark", theme: dark, icon: "🌒" },
-  { name: "Custom", theme: custom, icon: "🎨" }
+  { name: "Auto", theme: "auto" },
+  { name: "System", theme: "system" },
+  { name: "Light", theme: light },
+  { name: "Dark", theme: dark },
+  { name: "Custom", theme: custom }
 ];
 
 function App() {
