@@ -24,7 +24,69 @@ $ yarn add themer.js
 $ npm install themer.js
 ```
 
-### Basic Usage
+## Create the `light` and `dark` themes
+
+To use the `"auto"` or `"system"` themes, you must create two themes called `light` and `dark`.
+
+```
+import Themer from "themer.js";
+
+const themes = {
+  light: {
+    "styles": {
+      "--app-background-color": "#f1f1f1",
+      "--primary-text-color": "#555"
+    }
+  },
+  dark: {
+    "styles": {
+      "--app-background-color": "#242835",
+      "--primary-text-color": "#f1f1f1"
+    }
+  }
+}
+
+const themer = new Themer({
+  themes: { light, dark }
+});
+```
+
+**See also:** [Theme `object`](#theme)
+
+## Create a custom theme
+
+A custom theme can be called anything, it just needs to be a `string`. For this example, we'll use `custom`.
+
+```
+import Themer from "themer.js";
+
+const themes = {
+  light: {
+    "styles": {
+      "--app-background-color": "#f1f1f1",
+      "--primary-text-color": "#555"
+    }
+  },
+  dark: {
+    "styles": {
+      "--app-background-color": "#242835",
+      "--primary-text-color": "#f1f1f1"
+    }
+  },
+  custom: {
+    "styles": {
+      "--app-background-color": "#d6713e",
+      "--primary-text-color": "#180f0a"
+    }
+  }
+}
+
+const themer = new Themer({
+  themes: { light, dark, custom }
+});
+```
+
+### Setting a theme
 
 ```
 import Themer from "themer.js";
@@ -47,13 +109,12 @@ themer.set("auto")
 
 ### Themer( config )
 
-- Arguments:
+- **Arguments:**
   - `{Object} config`
-- Details: Instantiate Themer.js.
-- Usage:
+- **Details:** Instantiate Themer.js.
+- **Usage:**
 
   ```
-  // Instantiate Themer.js
   const themer = new Themer({
     themes: { light, dark, custom },
     debug: true
@@ -64,16 +125,16 @@ themer.set("auto")
 
 ### Themer.set( theme )
 
-- Arguments:
+- **Arguments:**
   - `{Object | string} theme`
-- Details: Sets the active theme. Accepts default themes (`"auto"` and `"system"`) `string` or a theme object.
-- Usage:
+- **Details:** Sets the active theme. Accepts default themes (`"auto"` and `"system"`) `string` or a theme object.
+- **Usage:**
 
   ```
-  // Set the theme to "auto"
+  // set the theme to "auto"
   Themer.set("auto")
 
-  // Explicitly set a theme
+  // directly set a theme
   Themer.set({
     "android": "#242835",
     "styles": {
@@ -82,27 +143,27 @@ themer.set("auto")
   })
   ```
 
-- See also: [Theme object](#theme)
+- **See also:** [Theme `object`](#theme)
 
 ### Themer.noSystemThemeSupport()
 
-- Details: Helper function to determine browser support for the `system` theme.
-- Returns: `false` if `prefers-color-scheme` is set, otherwise returns `true`.
-- Usage:
+- **Details:** Helper function to determine browser support for the `system` theme.
+- **Returns:** `false` if `prefers-color-scheme` is set, otherwise returns `true`.
+- **Usage:**
 
   ```
   // Chrome 76, Firefox 67, Safari 12.1
   Themer.noSystemThemeSupport()
   ↳ false
 
-  // Unsupported browsers
+  // unsupported browsers
   Themer.noSystemThemeSupport()
   ↳ true
   ```
 
 - See also: [prefers-color-scheme](https://caniuse.com/#feat=prefers-color-scheme)
 
-## <a name="config"></a>Config `object`
+### <a name="config"></a>Config `object`
 
 | Key      | Type      | Description                   |
 | -------- | --------- | ----------------------------- |
@@ -118,12 +179,12 @@ themer.set("auto")
 }
 ```
 
-## <a name="theme"></a>Theme `object`
+### <a name="theme"></a>Theme `object`
 
 | Key       | Type     | Description                                                                                                                     |
 | --------- | -------- | ------------------------------------------------------------------------------------------------------------------------------- |
 | `android` | `string` | Sets the [meta theme-color](https://developers.google.com/web/updates/2014/11/Support-for-theme-color-in-Chrome-39-for-Android) |
-| `styles`  | `object` | Theme key/value pair of CSS variables                                                                                           |
+| `styles`  | `object` | Your theme's CSS variables                                                                                                      |
 
 #### Example
 
@@ -134,5 +195,14 @@ themer.set("auto")
     "--app-background-color": "#242835",
     "--primary-text-color": "#f1f1f1"
   }
+}
+```
+
+You reference this variable anywhere in your CSS and it will update in real time to the active theme.
+
+```
+html {
+  background-color: var(--app-background-color);
+  color: var(--primary-text-color);
 }
 ```
