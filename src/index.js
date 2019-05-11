@@ -98,9 +98,9 @@ export default class Themer {
     return window.matchMedia(`(prefers-color-scheme: ${theme})`).matches;
   };
 
-  noSystemThemeSupport = () => {
+  systemThemeSupport = () => {
     return this.prefersColorScheme("dark") || this.prefersColorScheme("light")
-      ? false
-      : true;
+      ? true
+      : false;
   };
 }

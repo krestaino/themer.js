@@ -46,6 +46,7 @@ const themes = {
   }
 }
 
+// instantiate Themer.js
 const themer = new Themer({
   themes: { light, dark }
 });
@@ -92,10 +93,8 @@ const themer = new Themer({
 import Themer from "themer.js";
 import { light, dark, custom } from "./themes/index.js";
 
-// instantiate Themer.js
 const themer = new Themer({
-  themes: { light, dark, custom },
-  debug: true
+  themes: { light, dark, custom }
 });
 
 // set theme to dark
@@ -134,31 +133,33 @@ themer.set("auto")
   // set the theme to "auto"
   Themer.set("auto")
 
-  // directly set a theme
-  Themer.set({
+  // set a theme
+  const dark = {
     "android": "#242835",
     "styles": {
       "--app-background-color": "#242835"
     }
-  })
+  }
+
+  Themer.set(dark)
   ```
 
 - **See also:** [Theme `object`](#theme)
 
-### Themer.noSystemThemeSupport()
+### Themer.systemThemeSupport()
 
 - **Details:** Helper function to determine browser support for the `system` theme.
-- **Returns:** `false` if `prefers-color-scheme` is set, otherwise returns `true`.
+- **Returns:** `boolean`
 - **Usage:**
 
   ```
   // Chrome 76, Firefox 67, Safari 12.1
-  Themer.noSystemThemeSupport()
-  ↳ false
+  Themer.systemThemeSupport()
+  ↳ true
 
   // unsupported browsers
-  Themer.noSystemThemeSupport()
-  ↳ true
+  Themer.systemThemeSupport()
+  ↳ false
   ```
 
 - See also: [prefers-color-scheme](https://caniuse.com/#feat=prefers-color-scheme)

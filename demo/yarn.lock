@@ -9707,10 +9707,10 @@ text-table@0.2.0, text-table@^0.2.0:
   resolved "https://registry.yarnpkg.com/text-table/-/text-table-0.2.0.tgz#7f5ee823ae805207c00af2df4a84ec3fcfa570b4"
   integrity sha1-f17oI66AUgfACvLfSoTsP8+lcLQ=
 
-themer.js@^1.0.0-alpha.8:
-  version "1.0.0-alpha.8"
-  resolved "https://registry.yarnpkg.com/themer.js/-/themer.js-1.0.0-alpha.8.tgz#f49b15bebabe00e113ff5fc6cc853459c93b74b0"
-  integrity sha512-XuRWRRZF9+i5tuKLtsuJ/kpcpzjBMXHi4SfKleiFSFQdF3gxnHn00hDQ1fzkYFQXajxEL3X/FcATpbsUbcWLyw==
+themer.js@^1.0.0-alpha.9:
+  version "1.0.0-alpha.9"
+  resolved "https://registry.yarnpkg.com/themer.js/-/themer.js-1.0.0-alpha.9.tgz#96c2cbd79fa6745b603bbe939384417a136ff407"
+  integrity sha512-XWui96Wm06yBjYcG7eFEAPFRUXgk+PNyrc/TaG2WpfIooawLTtVIZkjWaD59wO0RGS3CDacIsSHaEyM6qCnGZg==
   dependencies:
     suncalc "1.8.0"
 
