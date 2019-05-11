@@ -1,23 +1,31 @@
-import React, { Component } from "react";
 import SunCalc from "suncalc";
 
-export default class Themer extends Component {
-  init() {
-    clearInterval(this.interval);
-    const { active } = this.props;
-
-    if (!active) {
-      return;
-    } else if (active === "auto") {
-      this.setAutoTheme();
-    } else if (active === "system") {
-      this.setSystemTheme();
-    } else {
-      this.setTheme(active);
-    }
+export default class Themer {
+  constructor(config) {
+    this.themes = config.themes;
+    this.debug = config.debug;
   }
 
-  async setAutoTheme() {
+  set = theme => {
+    if (this.debug) {
+      console.log(`Setting theme.`);
+      console.log(theme);
+    }
+
+    clearInterval(this.interval);
+
+    if (!theme) {
+      return;
+    } else if (theme === "auto") {
+      this.setAutoTheme();
+    } else if (theme === "system") {
+      this.setSystemTheme();
+    } else {
+      this.setTheme(theme);
+    }
+  };
+
+  setAutoTheme = async () => {
     try {
       const {
         coords: { latitude, longitude }
@@ -28,57 +36,63 @@ export default class Themer extends Component {
         this.getSunriseSunset(latitude, longitude);
       }, 60000);
     } catch (error) {
-      this.setTheme(this.props.themes.light);
-      console.error(error);
+      if (this.debug) console.error(error);
     }
-  }
+  };
 
-  getLocation() {
+  getLocation = () => {
     return new Promise((resolve, reject) => {
       navigator.geolocation.getCurrentPosition(resolve, reject);
     });
-  }
+  };
 
-  getSunriseSunset(latitude, longitude) {
+  getSunriseSunset = (latitude, longitude) => {
     const date = new Date();
-    const { dark, light } = this.props.themes;
+    const { dark, light } = this.themes;
     const { sunrise, sunset } = SunCalc.getTimes(date, latitude, longitude);
 
     date < sunrise || date > sunset
       ? this.setTheme(dark)
       : this.setTheme(light);
-  }
+  };
 
-  setSystemTheme() {
-    const { dark, light } = this.props.themes;
+  setSystemTheme = () => {
+    const { dark, light } = this.themes;
 
-    window.matchMedia("(prefers-color-scheme: dark)").matches
-      ? this.setTheme(dark)
-      : this.setTheme(light);
-  }
+    const prefersColorScheme = theme =>
+      window.matchMedia(`(prefers-color-scheme: ${theme})`).matches;
 
-  setTheme(theme) {
-    const root = document.querySelector("html");
-    const metaThemeColor = document.querySelector("meta[name=theme-color]");
+    if (prefersColorScheme("dark")) {
+      this.setTheme(dark);
+    } else if (prefersColorScheme("light")) {
+      this.setTheme(light);
+    } else {
+      if (this.debug)
+        console.error(
+          "System theme not supported by this browser. Requires prefers-color-scheme. https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme"
+        );
+    }
+  };
+
+  setTheme = theme => {
+    const html = document.querySelector("html");
 
     Object.entries(theme.styles).forEach(style => {
-      root.style.setProperty(style[0], style[1]);
+      html.style.setProperty(style[0], style[1]);
     });
 
-    metaThemeColor.setAttribute("content", theme.android);
-  }
+    this.setAndroid(theme);
 
-  componentDidMount() {
-    this.init();
-  }
+    if (this.debug) console.log("Theme changed successfully.");
+  };
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.active !== this.props.active) {
-      this.init();
+  setAndroid = theme => {
+    if (theme.android) {
+      const metaThemeColor = document.querySelector("meta[name=theme-color]");
+      metaThemeColor.setAttribute("content", theme.android);
+      if (this.debug) console.log("Android theme-color changed successfully.");
+    } else {
+      if (this.debug) console.error("Android theme-color undefined.");
     }
-  }
-
-  render() {
-    return null;
-  }
+  };
 }

@@ -3,7 +3,8 @@
 Spice up your app with themes. Themer.js features include:
 
 - Automatic night/day theme switching
-- System theme support using `prefers-color-scheme`
+- System [prefers-color-scheme](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme) support
+- Android [meta theme-color](https://developers.google.com/web/updates/2014/11/Support-for-theme-color-in-Chrome-39-for-Android) support
 - Custom themes
 - Manual control over everything
 
@@ -17,126 +18,46 @@ Spice up your app with themes. Themer.js features include:
 
 ```
 # using yarn
-$ yarn add react-themer.js
+$ yarn add themer.js
 
 # using npm
-$ npm install react-themer.js
+$ npm install themer.js
 ```
 
 ### Basic Usage
 
 ```
-import React, { Component } from "react";
-import Themer from "react-themer.js";
+import Themer from "themer.js";
+import { light, dark, custom } from "./themes/index.js";
 
-const themes = {
-  light: {
-    "--app-background-color": "#f1f1f1",
-    "--primary-text-color": "#555"
-  },
-  dark: {
-    "--app-background-color": "#242835",
-    "--primary-text-color": "#f1f1f1"
-  }
-}
+// instantiate Themer.js
+const themer = new Themer({
+  themes: { light, dark, custom },
+  debug: true
+});
 
-export default class App extends Component {
-  render() {
-    return (
-      <main style="
-        background-color: var(--app-background-color);
-        color: var(--primary-text-color);
-      ">
-        <Themer active="auto" themes={themes} />
-      </main>
-    )
-  }
-}
+// set theme to dark
+themer.set(dark)
+
+// set theme to "auto"
+themer.set("auto")
 ```
 
-### Advanced Usage
+## <a name="config"></a>Configuration
 
-```
-# index.js
+| Key      | Type      | Description                                 |
+| -------- | --------- | ------------------------------------------- |
+| `debug`  | `boolean` | Log debug console statements                |
+| `themes` | `object`  | Available themes. See more: [Theme](#theme) |
 
-import React, { Component } from "react";
-import Themer from "react-themer.js";
+## <a name="themes"></a>Theme
 
-import light from "./light.json";
-import dark from "./dark.json";
+The theme object.
 
-import './index.css';
-
-export default class App extends Component {
-  state = {
-    active: "auto",
-    themes: { dark, light }
-  };
-
-  render() {
-    const { active, themes } = this.state;
-
-    const Button = (theme, name) => {
-      return (
-        <button onClick={() => this.setState({ active: theme })}>
-          {name}
-        </button>
-      );
-    };
-
-    return (
-      <main>
-        <Themer active={active} themes={themes} />
-        {Button("auto", "Auto")}
-        {Button("system", "System")}
-        {Button(light, "Light")}
-        {Button(dark, "Dark")}
-      </main>
-    )
-  }
-}
-```
-
-```
-# index.css
-
-main {
-  background-color: --app-background-color;
-  color: --primary-text-color;
-}
-
-```
-
-```
-# light.json
-
-{
-  "styles": {
-    "--app-background-color": "#f1f1f1",
-    "--primary-text-color": "#555",
-  }
-}
-```
-
-```
-# dark.json
-
-{
-  "styles": {
-    "--app-background-color": "#242835",
-    "--primary-text-color": "#f1f1f1",
-  }
-}
-```
-
-## <a name="props"></a>Props
-
-| Prop     | Type                 | Description       |
-| -------- | -------------------- | ----------------- |
-| `active` | `string` or `object` | The active theme. |
-| `themes` | `object`             | Available themes. |
-
-## Themes
+| Key       | Type     | Description                                                                                                            |
+| --------- | -------- | ---------------------------------------------------------------------------------------------------------------------- |
+| `android` | `string` | [meta theme-color](https://developers.google.com/web/updates/2014/11/Support-for-theme-color-in-Chrome-39-for-Android) |
+| `styles`  | `object` | CSS variables                                                                                                          |
 
 ```
 {
@@ -158,4 +79,8 @@ main {
 }
 ```
 
-Note: The `android` key is used to set the [meta theme-color](https://developers.google.com/web/updates/2014/11/Support-for-theme-color-in-Chrome-39-for-Android).
+## <a name="methods"></a>Methods
+
+| Method | Parameters      | Description      |
+| ------ | --------------- | ---------------- |
+| `set`  | [Theme](#theme) | Set active theme |
