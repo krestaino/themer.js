@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import ReactMarkdown from "react-markdown";
-import README from "react-themer.js/README.md";
+import README from "themer.js/README.md";
 import "./styles.scss";
 
 export default class Readme extends Component {

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { hydrate, render } from "react-dom";
-import Themer from "react-themer.js";
+import Themer from "themer.js";
 
 import Header from "./components/Header";
 import Readme from "./components/Readme";

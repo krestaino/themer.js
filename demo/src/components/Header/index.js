@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import PACKAGE from "react-themer.js/package.json";
+import PACKAGE from "themer.js/package.json";
 import "./styles.scss";
 
 export default class Header extends Component {
