@@ -1,15 +1,22 @@
 <template>
-  <div id="app">
+  <main>
     <img alt="Vue logo" src="./assets/logo.png">
-    <a v-for="obj in themes" @click.prevent="$themer(obj.theme)" :key="obj.name">{{ obj.name }}</a>
-  </div>
+    <div>
+      <a
+        v-for="obj in themes"
+        v-on:click.prevent="$themer.set(obj.theme)"
+        v-bind:key="obj.name"
+        v-text="obj.name"
+        href="#"
+      />
+    </div>
+  </main>
 </template>
 
 <script>
 import { light, dark, custom } from "./themes/index.js";
 
 export default {
-  name: "app",
   data() {
     return {
       themes: [
@@ -25,12 +32,28 @@ export default {
 </script>
 
 <style>
-#app {
+html {
+  background-color: var(--app-background-color);
+}
+
+main {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+div {
+  margin-top: 2rem;
+}
+
+a {
+  color: #42b983;
+}
+
+a + a {
+  margin-left: 1rem;
 }
 </style>
