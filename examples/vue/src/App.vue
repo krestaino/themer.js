@@ -2,12 +2,11 @@
   <main>
     <img alt="Vue logo" src="./assets/logo.png">
     <div>
-      <a
+      <button
         v-for="obj in themes"
-        v-on:click.prevent="$themer.set(obj.theme)"
+        v-on:click="$themer.set(obj.theme)"
         v-bind:key="obj.name"
         v-text="obj.name"
-        href="#"
       />
     </div>
   </main>
@@ -49,11 +48,15 @@ div {
   margin-top: 2rem;
 }
 
-a {
+button {
+  background-color: transparent;
+  border: 0;
   color: #42b983;
+  cursor: pointer;
+  font-size: 1rem;
 }
 
-a + a {
+button + button {
   margin-left: 1rem;
 }
 </style>
