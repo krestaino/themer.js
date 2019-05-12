@@ -12,7 +12,7 @@ Spice up your app with themes. Themer.js features include:
 
 [https://themer.js.kmr.io](https://themer.js.kmr.io)
 
-## Quick Start
+## <a name="quick-start"></a>Quick Start
 
 ### Install
 
@@ -59,31 +59,37 @@ import { light, dark } from "./themes/index.js";
 const themer = new Themer({ light, dark });
 
 // set theme to dark
-themer.setTheme(dark)
+themer.setTheme(dark);
 
 // set theme to auto
-themer.setAuto()
+themer.setAuto();
 
 // set theme to system
-themer.setSystem()
+themer.setSystem();
 ```
 
-### Create a custom theme
+### Setting a custom theme
 
-A custom theme can be called anything, just include a valid [Theme `object`](#theme) to the themes array. For this example, we'll use `"custom"`.
+Pass a valid [Theme `object`](#theme) to [setTheme()](#setTheme).
 
 ```
 import Themer from "themer.js";
-import { custom } from "./themes/index.js";
+
+const custom = {
+  "styles": {
+    "--app-background-color": "#f1f1f1",
+    "--primary-text-color": "#555"
+  }
+};
 
 const themer = new Themer();
 
-themer.set(custom)
+themer.setTheme(custom);
 ```
 
 ## <a name="api"></a>API
 
-### Themer( config )
+### <a name="themer"></a>Themer(config)
 
 - **Arguments:**
   - `{Object} config`
@@ -91,17 +97,21 @@ themer.set(custom)
 - **Usage:**
 
   ```
-  const themer = new Themer({
+  import { light, dark } from "./themes/index.js";
+
+  const config = {
     light,
     dark,
     debug: true,
     onUpdate: (theme) => console.log(theme)
-  });
+  };
+
+  const themer = new Themer(config);
   ```
 
 - See also: [Config object](#config)
 
-### Themer.setAuto()
+### <a name="setAuto"></a>Themer.setAuto()
 
 - **Details:** Sets the active theme to `light` during the day and `dark` during the night.
 - **Restrictions:**
@@ -110,10 +120,10 @@ themer.set(custom)
 - **Usage:**
 
   ```
-  Themer.setAuto()
+  Themer.setAuto();
   ```
 
-### Themer.setSystem()
+### <a name="setSystem"></a>Themer.setSystem()
 
 - **Details:** Sets the active theme to `system`.
 - **Restriction:**
@@ -122,10 +132,12 @@ themer.set(custom)
 - **Usage:**
 
   ```
-  Themer.setSystem()
+  Themer.setSystem();
   ```
 
-### Themer.setTheme( theme )
+  **See also:** [Themer.systemThemeSupport()](#systemThemeSupport)
+
+### <a name="setTheme"></a>Themer.setTheme( theme )
 
 - **Arguments:**
   - `{Object | string} theme`
@@ -138,14 +150,14 @@ themer.set(custom)
     "styles": {
       "--app-background-color": "#242835"
     }
-  }
+  };
 
-  Themer.setTheme(dark)
+  Themer.setTheme(dark);
   ```
 
 - **See also:** [Theme `object`](#theme)
 
-### Themer.systemThemeSupport()
+### <a name="systemThemeSupport"></a>Themer.systemThemeSupport()
 
 - **Details:** Helper function to determine browser support for the `system` theme.
 - **Returns:** `boolean`
@@ -153,11 +165,11 @@ themer.set(custom)
 
   ```
   // Chrome 76, Firefox 67, Safari 12.1
-  Themer.systemThemeSupport()
+  Themer.systemThemeSupport();
   ↳ true
 
   // unsupported browsers
-  Themer.systemThemeSupport()
+  Themer.systemThemeSupport();
   ↳ false
   ```
 
@@ -169,15 +181,27 @@ themer.set(custom)
 | ---------- | ---------- | ------------------------------------------------- |
 | `debug`    | `boolean`  | Log debug console statements.                     |
 | `onUpdate` | `function` | A callback function that returns the set `theme`. |
-| `light`    | `object`   | User defined light [theme](#theme).               |
-| `dark`     | `object`   | User defined dark [theme](#theme).                |
+| `light`    | `object`   | The `dark` theme.                                 |
+| `dark`     | `object`   | The `light` theme.                                |
 
-#### Example
+**Example:**
 
 ```
 {
-  "debug": true,
-  "themes": [ light, dark, custom ]
+  debug: true,
+  onUpdate: (theme) => console.log(theme),
+  "light": {
+    "styles": {
+      "--app-background-color": "#f1f1f1",
+      "--primary-text-color": "#555"
+    }
+  },
+  "dark": {
+    "styles": {
+      "--app-background-color": "#242835",
+      "--primary-text-color": "#f1f1f1"
+    }
+  }
 }
 ```
 
@@ -185,11 +209,10 @@ themer.set(custom)
 
 | Key       | Type     | Description                                                                                                                      |
 | --------- | -------- | -------------------------------------------------------------------------------------------------------------------------------- |
-| `name`    | `string` | Unique identifier for the theme.                                                                                                 |
 | `android` | `string` | Sets the [meta theme-color](https://developers.google.com/web/updates/2014/11/Support-for-theme-color-in-Chrome-39-for-Android). |
-| `styles`  | `object` | Your theme's CSS variables.                                                                                                      |
+| `styles`  | `object` | The theme CSS variables.                                                                                                         |
 
-#### Example
+**Example:**
 
 ```
 {
@@ -201,7 +224,7 @@ themer.set(custom)
 }
 ```
 
-You reference this variable anywhere in your CSS and it will update in real time to the active theme.
+Use the CSS variables anywhere in your CSS and it will update in real time to the active theme.
 
 ```
 html {
