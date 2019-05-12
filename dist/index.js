@@ -13,26 +13,22 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 class Themer {
   constructor(config) {
-    _defineProperty(this, "set", theme => {
+    _defineProperty(this, "setTheme", theme => {
       if (this.debug) {
         console.log(`Setting theme.`);
         console.log(theme);
       }
 
       clearInterval(this.interval);
-
-      if (!theme) {
-        return;
-      } else if (theme === "auto") {
-        this.setAutoTheme();
-      } else if (theme === "system") {
-        this.setSystemTheme();
-      } else {
-        this.setTheme(theme);
-      }
+      if (theme) this.setTheme(theme);
     });
 
-    _defineProperty(this, "setAutoTheme", async () => {
+    _defineProperty(this, "setAuto", async () => {
+      if (!this.light || !this.dark) {
+        if (this.debug) console.error("Missing `light` or `dark` theme.");
+        return;
+      }
+
       try {
         const {
           coords: {
@@ -57,29 +53,20 @@ class Themer {
 
     _defineProperty(this, "getSunriseSunset", (latitude, longitude) => {
       const date = new Date();
-      const {
-        dark,
-        light
-      } = this.themes;
 
       const {
         sunrise,
         sunset
       } = _suncalc.default.getTimes(date, latitude, longitude);
 
-      date < sunrise || date > sunset ? this.setTheme(dark) : this.setTheme(light);
+      date < sunrise || date > sunset ? this.setTheme(this.dark) : this.setTheme(this.light);
     });
 
-    _defineProperty(this, "setSystemTheme", () => {
-      const {
-        dark,
-        light
-      } = this.themes;
-
+    _defineProperty(this, "setSystem", () => {
       if (this.prefersColorScheme("dark")) {
-        this.setTheme(dark);
+        this.setTheme(this.dark);
       } else if (this.prefersColorScheme("light")) {
-        this.setTheme(light);
+        this.setTheme(this.light);
       } else {
         if (this.debug) console.error("System theme not supported by this browser. Requires prefers-color-scheme. https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme");
       }
@@ -92,6 +79,7 @@ class Themer {
       });
       this.setAndroid(theme);
       if (this.debug) console.log("Theme changed successfully.");
+      if (this.onUpdate) this.onUpdate(theme);
     });
 
     _defineProperty(this, "setAndroid", theme => {
@@ -112,8 +100,10 @@ class Themer {
       return this.prefersColorScheme("dark") || this.prefersColorScheme("light") ? true : false;
     });
 
-    this.themes = config.themes;
+    this.light = config.light;
+    this.dark = config.dark;
     this.debug = config.debug;
+    this.onUpdate = config.onUpdate;
   }
 
 }

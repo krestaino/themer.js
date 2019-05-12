@@ -24,14 +24,14 @@ $ yarn add themer.js
 $ npm install themer.js
 ```
 
-### Create the `light` and `dark` themes
+### Define the `light` and `dark` themes
 
-To use the `"auto"` or `"system"` themes, you must create two themes called `"light"` and `"dark"`.
+To use the `auto` or `system` themes, you must define a `light` and `dark` [Theme object](#theme).
 
 ```
 import Themer from "themer.js";
 
-const themes = {
+const config = {
   "light": {
     "styles": {
       "--app-background-color": "#f1f1f1",
@@ -47,61 +47,38 @@ const themes = {
 }
 
 // instantiate Themer.js
-const themer = new Themer({
-  themes: { light, dark }
-});
-```
-
-**See also:** [Theme `object`](#theme)
-
-### Create a custom theme
-
-A custom theme can be called anything, it just needs to be a `string`. For this example, we'll use `"custom"`.
-
-```
-import Themer from "themer.js";
-
-const themes = {
-  "light": {
-    "styles": {
-      "--app-background-color": "#f1f1f1",
-      "--primary-text-color": "#555"
-    }
-  },
-  "dark": {
-    "styles": {
-      "--app-background-color": "#242835",
-      "--primary-text-color": "#f1f1f1"
-    }
-  },
-  "custom": {
-    "styles": {
-      "--app-background-color": "#d6713e",
-      "--primary-text-color": "#180f0a"
-    }
-  }
-}
-
-const themer = new Themer({
-  themes: { light, dark, custom }
-});
+const themer = new Themer(config);
 ```
 
 ### Setting a theme
 
 ```
 import Themer from "themer.js";
-import { light, dark, custom } from "./themes/index.js";
+import { light, dark } from "./themes/index.js";
 
-const themer = new Themer({
-  themes: { light, dark, custom }
-});
+const themer = new Themer({ light, dark });
 
 // set theme to dark
-themer.set(dark)
+themer.setTheme(dark)
 
-// set theme to "auto"
-themer.set("auto")
+// set theme to auto
+themer.setAuto()
+
+// set theme to system
+themer.setSystem()
+```
+
+### Create a custom theme
+
+A custom theme can be called anything, just include a valid [Theme `object`](#theme) to the themes array. For this example, we'll use `"custom"`.
+
+```
+import Themer from "themer.js";
+import { custom } from "./themes/index.js";
+
+const themer = new Themer();
+
+themer.set(custom)
 ```
 
 ## <a name="api"></a>API
@@ -115,25 +92,47 @@ themer.set("auto")
 
   ```
   const themer = new Themer({
-    themes: { light, dark, custom },
-    debug: true
+    light,
+    dark,
+    debug: true,
+    onUpdate: (theme) => console.log(theme)
   });
   ```
 
 - See also: [Config object](#config)
 
-### Themer.set( theme )
+### Themer.setAuto()
 
-- **Arguments:**
-  - `{Object | string} theme`
-- **Details:** Sets the active theme. Accepts default themes (`"auto"` and `"system"`) `string` or a theme object.
+- **Details:** Sets the active theme to `light` during the day and `dark` during the night.
+- **Restrictions:**
+  - `light` and `dark` themes must be defined.
+  - Requires user geolocation consent.
 - **Usage:**
 
   ```
-  // set the theme to "auto"
-  Themer.set("auto")
+  Themer.setAuto()
+  ```
 
-  // set a theme
+### Themer.setSystem()
+
+- **Details:** Sets the active theme to `system`.
+- **Restriction:**
+  - `light` and `dark` themes must be defined.
+  - The browser must support [prefers-color-scheme](https://caniuse.com/#feat=prefers-color-scheme).
+- **Usage:**
+
+  ```
+  Themer.setSystem()
+  ```
+
+### Themer.setTheme( theme )
+
+- **Arguments:**
+  - `{Object | string} theme`
+- **Details:** Sets the active theme.
+- **Usage:**
+
+  ```
   const dark = {
     "android": "#242835",
     "styles": {
@@ -141,7 +140,7 @@ themer.set("auto")
     }
   }
 
-  Themer.set(dark)
+  Themer.setTheme(dark)
   ```
 
 - **See also:** [Theme `object`](#theme)
@@ -166,35 +165,38 @@ themer.set("auto")
 
 ### <a name="config"></a>Config `object`
 
-| Key      | Type      | Description                   |
-| -------- | --------- | ----------------------------- |
-| `debug`  | `boolean` | Log debug console statements  |
-| `themes` | `object`  | User defined [themes](#theme) |
+| Key        | Type       | Description                                       |
+| ---------- | ---------- | ------------------------------------------------- |
+| `debug`    | `boolean`  | Log debug console statements.                     |
+| `onUpdate` | `function` | A callback function that returns the set `theme`. |
+| `light`    | `object`   | User defined light [theme](#theme).               |
+| `dark`     | `object`   | User defined dark [theme](#theme).                |
 
 #### Example
 
 ```
 {
   "debug": true,
-  "themes": { light, dark, custom }
+  "themes": [ light, dark, custom ]
 }
 ```
 
 ### <a name="theme"></a>Theme `object`
 
-| Key       | Type     | Description                                                                                                                     |
-| --------- | -------- | ------------------------------------------------------------------------------------------------------------------------------- |
-| `android` | `string` | Sets the [meta theme-color](https://developers.google.com/web/updates/2014/11/Support-for-theme-color-in-Chrome-39-for-Android) |
-| `styles`  | `object` | Your theme's CSS variables                                                                                                      |
+| Key       | Type     | Description                                                                                                                      |
+| --------- | -------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| `name`    | `string` | Unique identifier for the theme.                                                                                                 |
+| `android` | `string` | Sets the [meta theme-color](https://developers.google.com/web/updates/2014/11/Support-for-theme-color-in-Chrome-39-for-Android). |
+| `styles`  | `object` | Your theme's CSS variables.                                                                                                      |
 
 #### Example
 
 ```
 {
-  "android": "#242835",
+  "android": "#f1f1f1",
   "styles": {
-    "--app-background-color": "#242835",
-    "--primary-text-color": "#f1f1f1"
+    "--app-background-color": "#f1f1f1",
+    "--primary-text-color": "#555"
   }
 }
 ```

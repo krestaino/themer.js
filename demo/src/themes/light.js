@@ -1,5 +1,11 @@
-{
-  "styles": {
+import { atomOneLight } from "react-syntax-highlighter/dist/styles/hljs";
+
+export default {
+  name: "Light",
+  icon: "🌞",
+  syntax: atomOneLight,
+  android: "#f1f1f1",
+  styles: {
     "--app-background-color": "#f1f1f1",
     "--primary-text-color": "#555",
     "--primary-accent-color": "#056fb6",
@@ -12,6 +18,5 @@
     "--table-pre-background-color": "#e6e6e6",
     "--table-zebra-background-color": "rgba(0, 0, 0, 0.05)",
     "--code-background-color": "rgba(0, 0, 0, 0.075)"
-  },
-  "android": "#f1f1f1"
-}
+  }
+};

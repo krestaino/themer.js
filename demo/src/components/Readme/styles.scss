@@ -34,7 +34,7 @@
   table,
   pre {
     background-color: #e6e6e6;
-    background-color: var(--table-pre-background-color, #e6e6e6);
+    background-color: var(--table-pre-background-color, #e6e6e6) !important;
     font-size: 0.9rem;
     transition: background-color 0.3s;
   }
@@ -53,7 +53,7 @@
 
   pre {
     border-radius: 3px;
-    padding: 1rem;
+    padding: 1rem !important;
 
     code {
       white-space: pre-wrap;

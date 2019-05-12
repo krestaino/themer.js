@@ -2,11 +2,13 @@ import SunCalc from "suncalc";
 
 export default class Themer {
   constructor(config) {
-    this.themes = config.themes;
+    this.light = config.light;
+    this.dark = config.dark;
     this.debug = config.debug;
+    this.onUpdate = config.onUpdate;
   }
 
-  set = theme => {
+  setTheme = theme => {
     if (this.debug) {
       console.log(`Setting theme.`);
       console.log(theme);
@@ -14,18 +16,15 @@ export default class Themer {
 
     clearInterval(this.interval);
 
-    if (!theme) {
-      return;
-    } else if (theme === "auto") {
-      this.setAutoTheme();
-    } else if (theme === "system") {
-      this.setSystemTheme();
-    } else {
-      this.setTheme(theme);
-    }
+    if (theme) this.setTheme(theme);
   };
 
-  setAutoTheme = async () => {
+  setAuto = async () => {
+    if (!this.light || !this.dark) {
+      if (this.debug) console.error("Missing `light` or `dark` theme.");
+      return;
+    }
+
     try {
       const {
         coords: { latitude, longitude }
@@ -48,21 +47,18 @@ export default class Themer {
 
   getSunriseSunset = (latitude, longitude) => {
     const date = new Date();
-    const { dark, light } = this.themes;
     const { sunrise, sunset } = SunCalc.getTimes(date, latitude, longitude);
 
     date < sunrise || date > sunset
-      ? this.setTheme(dark)
-      : this.setTheme(light);
+      ? this.setTheme(this.dark)
+      : this.setTheme(this.light);
   };
 
-  setSystemTheme = () => {
-    const { dark, light } = this.themes;
-
+  setSystem = () => {
     if (this.prefersColorScheme("dark")) {
-      this.setTheme(dark);
+      this.setTheme(this.dark);
     } else if (this.prefersColorScheme("light")) {
-      this.setTheme(light);
+      this.setTheme(this.light);
     } else {
       if (this.debug)
         console.error(
@@ -81,6 +77,7 @@ export default class Themer {
     this.setAndroid(theme);
 
     if (this.debug) console.log("Theme changed successfully.");
+    if (this.onUpdate) this.onUpdate(theme);
   };
 
   setAndroid = theme => {

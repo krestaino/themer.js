@@ -14,7 +14,7 @@ export default class Header extends Component {
             github.com/krestaino/themer.js
           </a>
           <p>
-            <span className="emoji">{this.props.icon || "🌗"}</span>
+            <span className="emoji">{this.props.theme.icon || "🌗"}</span>
             {PACKAGE.description}
           </p>
         </div>
