@@ -2,6 +2,8 @@
 
 Spice up your app with dynamic themes.
 
+![Alt Text](./assets/screen-recording.gif)
+
 **Features:**
 
 - Automatic day/night switching using the sunset and sunrise times of the user's location

@@ -8,7 +8,8 @@
   // hide demo section
   h1,
   h2:first-of-type,
-  h2:first-of-type+ul {
+  h2:first-of-type+ul,
+  img {
     display: none;
   }
 
