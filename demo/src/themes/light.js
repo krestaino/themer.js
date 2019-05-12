@@ -15,6 +15,8 @@ export default {
     "--button-active-border-color": "var(--primary-accent-color)",
     "--table-pre-background-color": "#e6e6e6",
     "--table-zebra-background-color": "rgba(0, 0, 0, 0.05)",
-    "--code-background-color": "rgba(0, 0, 0, 0.075)"
+    "--code-background-color": "rgba(0, 0, 0, 0.075)",
+    "--selection-background-color": "var(--primary-accent-color)",
+    "--selection-color": "#fff"
   }
 };

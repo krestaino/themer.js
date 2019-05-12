@@ -40,13 +40,20 @@
 
     div {
       display: flex;
-    }
 
-    .emoji {
-      display: inline-block;
-      margin-right: 0.5rem;
-      text-align: center;
-      width: 1rem;
+
+      span {
+        transition: transform 0.3s;
+        width: 1.75rem;
+
+        &.--trigger {
+          transform: rotateY(360deg);
+        }
+
+        i {
+          position: absolute;
+        }
+      }
     }
   }
 

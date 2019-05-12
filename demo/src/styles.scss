@@ -26,6 +26,11 @@ html {
   backface-visibility: hidden;
 }
 
+::selection {
+  background: var(--selection-background-color);
+  color: var(--selection-color);
+}
+
 body {
   margin: 0;
   padding: 0;
