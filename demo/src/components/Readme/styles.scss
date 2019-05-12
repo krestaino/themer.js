@@ -4,7 +4,7 @@
   // hide demo section
   h1,
   h2:first-of-type,
-  h2:first-of-type+p {
+  h2:first-of-type+ul {
     display: none;
   }
 

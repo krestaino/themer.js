@@ -10,7 +10,12 @@ Spice up your app with themes. Themer.js features include:
 
 ## Demo
 
-[https://themer.js.kmr.io](https://themer.js.kmr.io)
+- [https://themer.js.kmr.io](https://themer.js.kmr.io)
+
+## Examples
+
+- **Vue:** [themer.js/examples/vue](https://github.com/krestaino/themer.js/tree/master/examples/vue)
+- **React:** [themer.js/examples/react](https://github.com/krestaino/themer.js/tree/master/examples/react)
 
 ## <a name="quick-start"></a>Quick Start
 
