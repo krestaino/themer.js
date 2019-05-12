@@ -33,7 +33,7 @@ $ npm install themer.js
 
 ### Define the `light` and `dark` themes
 
-To use the `auto` or `system` themes, you must define a `light` and `dark` [Theme object](#theme).
+To use the `auto` or `system` themes, you must define a `light` and `dark` [Theme `object`](#theme).
 
 ```
 import Themer from "themer.js";
@@ -116,13 +116,13 @@ themer.set(custom);
   const themer = new Themer(config);
   ```
 
-- **See also:** [Config object](#config)
+- **See also:** [Config `object`](#config)
 
 ### <a name="auto"></a>Themer.set( "auto" )
 
 - **Details:** Sets the active theme to `light` during the day and `dark` during the night.
 - **Restrictions:**
-  - `light` and `dark` themes must be defined in the [Config object](#config).
+  - `light` and `dark` themes must be defined in the [Config `object`](#config).
   - Requires user geolocation consent.
 - **Usage:**
 
