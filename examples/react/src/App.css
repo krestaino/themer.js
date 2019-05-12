@@ -1,36 +1,31 @@
-body {
+html {
   background-color: var(--app-background-color);
+}
+
+body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+}
+
+main {
+  align-items: center;
+  display: flex;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-}
-
-.App {
-  text-align: center;
-}
-
-.App-logo {
+img {
   animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+  margin-left: -10rem;
+  max-height: 10rem;
+  max-width: 10rem;
 }
 
-.App-header {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+main div {
+  margin-top: 2rem;
 }
 
 button {
@@ -39,6 +34,10 @@ button {
   color: #61dafb;
   cursor: pointer;
   font-size: 1rem;
+}
+
+button+button {
+  margin-left: 1rem;
 }
 
 @keyframes App-logo-spin {

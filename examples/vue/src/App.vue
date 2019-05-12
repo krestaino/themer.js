@@ -35,13 +35,23 @@ html {
   background-color: var(--app-background-color);
 }
 
+body {
+  margin: 0;
+}
+
 main {
+  align-items: center;
+  display: flex;
   font-family: "Avenir", Helvetica, Arial, sans-serif;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+}
+
+img {
+  max-height: 10rem;
 }
 
 div {

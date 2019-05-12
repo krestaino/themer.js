@@ -21,18 +21,16 @@ const themes = [
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <div>
-          {themes.map(obj => (
-            <button onClick={() => themer.set(obj.theme)} key={obj.name}>
-              {obj.name}
-            </button>
-          ))}
-        </div>
-      </header>
-    </div>
+    <main>
+      <img alt="React logo" src={logo} />
+      <div>
+        {themes.map(obj => (
+          <button onClick={() => themer.set(obj.theme)} key={obj.name}>
+            {obj.name}
+          </button>
+        ))}
+      </div>
+    </main>
   );
 }
 
