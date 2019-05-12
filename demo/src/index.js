@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { hydrate, render } from "react-dom";
+import ReactDOM from "react-dom";
 import Themer from "themer.js";
 
 import Header from "./components/Header";
@@ -82,10 +82,4 @@ export default class App extends Component {
   }
 }
 
-const rootElement = document.getElementById("root");
-
-if (rootElement.hasChildNodes()) {
-  hydrate(<App />, rootElement);
-} else {
-  render(<App />, rootElement);
-}
+ReactDOM.render(<App />, document.getElementById("root"));
