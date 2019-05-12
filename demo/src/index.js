@@ -51,7 +51,11 @@ export default class App extends Component {
               }
               key={obj.name}
               onClick={() => this.setTheme(obj.theme)}
-              title={`Set ${obj.name} as the active theme.`}
+              title={
+                !this.themer.systemThemeSupport() && obj.theme === "system"
+                  ? "This theme is not supported by your browser."
+                  : `Set the active theme to ${obj.name}.`
+              }
             >
               {obj.name}
             </button>
