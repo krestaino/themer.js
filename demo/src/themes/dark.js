@@ -4,7 +4,7 @@ export default {
   name: "Dark",
   icon: "🌒",
   syntax: atomOneDark,
-  android: "#242835",
+  android: "#2d303c",
   styles: {
     "--app-background-color": "#242835",
     "--primary-text-color": "#f1f1f1",

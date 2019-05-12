@@ -4,7 +4,7 @@ export default {
   name: "Custom",
   icon: "🎨",
   syntax: gruvboxLight,
-  android: "#fbf1c7",
+  android: "#fff9df",
   styles: {
     "--app-background-color": "#fbf1c7",
     "--primary-text-color": "#403c28",

@@ -80,8 +80,13 @@
   table {
     border-radius: 3px;
     border-spacing: 0;
+    font-family: 'Ubuntu', sans-serif;
     text-align: left;
     width: 100%;
+
+    th {
+      font-weight: bold;
+    }
 
     th,
     td {
@@ -99,7 +104,6 @@
   pre {
     background-color: #e6e6e6;
     background-color: var(--table-pre-background-color, #e6e6e6) !important;
-    font-family: 'Ubuntu Mono', monospace;
     margin-bottom: 1rem;
     transition: background-color 0.3s;
   }
@@ -117,6 +121,7 @@
 
   pre {
     border-radius: 3px;
+    font-family: 'Ubuntu Mono', monospace;
     padding: 1rem !important;
 
     code {

@@ -4,7 +4,7 @@ export default {
   name: "Light",
   icon: "🌞",
   syntax: atomOneLight,
-  android: "#f1f1f1",
+  android: "#f8f8f8",
   styles: {
     "--app-background-color": "#f1f1f1",
     "--primary-text-color": "#555",
