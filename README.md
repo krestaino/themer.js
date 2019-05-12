@@ -107,10 +107,10 @@ themer.set(custom);
   import { light, dark } from "./themes/index.js";
 
   const config = {
-    light,
-    dark,
     debug: true,
-    onUpdate: (theme) => console.log(theme)
+    onUpdate: (theme) => console.log(theme),
+    light,
+    dark
   };
 
   const themer = new Themer(config);
