@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import ReactMarkdown from "react-markdown";
 import CodeBlock from "./codeBlock";
 import README from "themer.js/README.md";
+import "reset-css";
 import "./styles.scss";
 
 export default class Readme extends Component {

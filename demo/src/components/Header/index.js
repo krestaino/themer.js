@@ -6,17 +6,16 @@ export default class Header extends Component {
   render() {
     return (
       <header id="header">
-        <div className="container">
+        <div className="meta container">
           <h1>
             Themer.js <span>v{PACKAGE.version}</span>
           </h1>
-          <a href="https://github.com/krestaino/themer.js">
-            github.com/krestaino/themer.js
-          </a>
-          <p>
-            <span className="emoji">{this.props.theme.icon || "🌗"}</span>
-            {PACKAGE.description}
-          </p>
+          <div>
+            <span className="emoji">{this.props.theme.icon}</span>
+            <a href="https://github.com/krestaino/themer.js">
+              github.com/krestaino/themer.js
+            </a>
+          </div>
         </div>
         <div className="buttons container">{this.props.children}</div>
       </header>

@@ -1,5 +1,5 @@
 #readme {
-  padding-top: 1rem;
+  padding-top: 2rem;
 
   // hide demo section
   h1,
@@ -8,9 +8,69 @@
     display: none;
   }
 
+  h2,
+  h3 {
+    font-weight: bold;
+    position: relative;
+    z-index: -1;
+
+    a {
+      height: 100%;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 100%;
+    }
+  }
+
+  p {
+    margin-bottom: 1rem;
+  }
+
+  strong {
+    font-weight: bold;
+  }
+
+  h2 {
+    border-bottom: 1px solid var(--table-pre-background-color, #e6e6e6);
+    font-size: 1.5rem;
+    padding-bottom: 0.5rem;
+    padding-top: 7rem;
+    margin-bottom: 1.5rem;
+    margin-top: -5rem;
+    transition: border-color 0.3s;
+
+    &+h3 {
+      margin-top: 0;
+      padding-top: 0
+    }
+  }
+
+  h3 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    padding-top: 7rem;
+    padding-bottom: 0.25rem;
+    margin-top: -5rem;
+
+    code {
+      font-size: 1.25rem;
+    }
+  }
+
   ul {
-    line-height: 1.75;
     margin-bottom: 0;
+    padding-left: 2rem;
+
+    li {
+      line-height: 1.25;
+      list-style-type: square;
+      margin-top: 1rem;
+    }
+
+    @media only screen and (max-width: 650px) {
+      padding-left: 1.5rem;
+    }
   }
 
   table {
@@ -35,7 +95,8 @@
   pre {
     background-color: #e6e6e6;
     background-color: var(--table-pre-background-color, #e6e6e6) !important;
-    font-size: 0.9rem;
+    font-family: 'Ubuntu Mono', monospace;
+    margin-bottom: 1rem;
     transition: background-color 0.3s;
   }
 
@@ -46,7 +107,6 @@
     background-color: rgba(0, 0, 0, 0.075);
     background-color: var(--code-background-color, rgba(0, 0, 0, 0.075));
     border-radius: 3px;
-    line-height: 2;
     padding: 4px;
     transition: background-color 0.3s;
   }
@@ -61,44 +121,10 @@
   }
 
   code {
-    font-size: .9rem;
+    font-family: 'Ubuntu Mono', monospace;
 
     @media only screen and (min-width: 1160px) {
       white-space: pre;
-    }
-  }
-
-  h2 {
-    border-bottom: 1px solid var(--table-pre-background-color, #e6e6e6);
-    font-size: 2rem;
-    padding-bottom: 0.5rem;
-    padding-top: 7rem;
-    position: relative;
-    margin-bottom: 1.5rem;
-    margin-top: -5rem;
-    transition: border-color 0.3s;
-    z-index: -1;
-
-    a {
-      height: 100%;
-      left: 0;
-      position: absolute;
-      top: 0;
-      width: 100%;
-    }
-
-    &+h3 {
-      margin-top: 0;
-    }
-  }
-
-  h3 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-    margin-top: 2.5rem;
-
-    code {
-      font-size: 1.25rem;
     }
   }
 }

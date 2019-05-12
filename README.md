@@ -1,8 +1,10 @@
 # Themer.js
 
-Spice up your app with themes. Themer.js features include:
+Spice up your app with dynamic themes.
 
-- Automatic night/day theme switching
+**Features:**
+
+- Automatic day/night switching using the sunset and sunrise times of the user's location
 - System [prefers-color-scheme](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme) support
 - Android [meta theme-color](https://developers.google.com/web/updates/2014/11/Support-for-theme-color-in-Chrome-39-for-Android) support
 - Custom themes
@@ -114,7 +116,7 @@ themer.set(custom);
   const themer = new Themer(config);
   ```
 
-- See also: [Config object](#config)
+- **See also:** [Config object](#config)
 
 ### <a name="auto"></a>Themer.set( "auto" )
 

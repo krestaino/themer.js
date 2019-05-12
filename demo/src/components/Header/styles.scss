@@ -3,30 +3,15 @@
   background-color: var(--header-background-color, #f8f8f8);
   display: flex;
   flex-direction: column;
-  height: 13rem;
+  height: 10rem;
   justify-content: space-between;
   position: sticky;
-  top: calc(5rem - 13rem);
+  top: calc(5rem - 10rem);
   z-index: 10;
   left: 0;
   width: 100%;
   padding: 1rem 0;
   transition: background-color 0.3s;
-
-  @media only screen and (max-width: 800px) {
-    height: 14rem;
-    top: calc(5rem - 14rem);
-  }
-
-  @media only screen and (max-width: 400px) {
-    height: 15rem;
-    top: calc(5rem - 15rem);
-  }
-
-  @media only screen and (max-width: 360px) {
-    height: 15.5rem;
-    top: calc(5rem - 15.5rem);
-  }
 
   h1 {
     display: inline-block;
@@ -42,20 +27,27 @@
 
   a {
     display: block;
-    margin-bottom: 1rem;
   }
 
   p {
-    line-height: 1.5;
     margin: 0;
   }
 
-  .emoji {
-    display: inline-block;
-    margin-right: 0.5rem;
-    text-align: center;
-    transform: translateY(-1px);
-    width: 1rem;
+  .meta {
+    flex: 1;
+    line-height: 1;
+    overflow: hidden;
+
+    div {
+      display: flex;
+    }
+
+    .emoji {
+      display: inline-block;
+      margin-right: 0.5rem;
+      text-align: center;
+      width: 1rem;
+    }
   }
 
   .buttons {
@@ -83,7 +75,6 @@
       font-weight: bold;
       text-transform: uppercase;
       font-size: 0.8rem;
-      letter-spacing: -0.4px;
 
       @media only screen and (max-width: 600px) {
         padding: 0.75rem 0.25rem;
