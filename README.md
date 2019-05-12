@@ -182,7 +182,7 @@ themer.set(custom);
   ↳ false
   ```
 
-- See also: [prefers-color-scheme](https://caniuse.com/#feat=prefers-color-scheme)
+- **See also:** [prefers-color-scheme](https://caniuse.com/#feat=prefers-color-scheme)
 
 ### <a name="config"></a>Config `object`
 
