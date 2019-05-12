@@ -7,7 +7,8 @@ import Themer from "themer.js";
 import { light, dark, custom } from "./themes/index.js";
 
 const themer = new Themer({
-  themes: { light, dark, custom },
+  light,
+  dark,
   debug: true
 });
 

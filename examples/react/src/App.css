@@ -1,5 +1,5 @@
 html {
-  background-color: var(--app-background-color);
+  background-color: var(--app-background-color, #f1f1f1);
 }
 
 body {
@@ -19,6 +19,7 @@ main {
 
 img {
   animation: App-logo-spin infinite 20s linear;
+  filter: var(--logo-filter);
   margin-left: -10rem;
   max-height: 10rem;
   max-width: 10rem;
@@ -31,7 +32,7 @@ main div {
 button {
   background-color: transparent;
   border: 0;
-  color: #61dafb;
+  color: var(--primary-text-color, #61dafb);
   cursor: pointer;
   font-size: 1rem;
 }

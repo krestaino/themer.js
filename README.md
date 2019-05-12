@@ -59,18 +59,18 @@ import { light, dark } from "./themes/index.js";
 const themer = new Themer({ light, dark });
 
 // set theme to dark
-themer.setTheme(dark);
+themer.set(dark);
 
 // set theme to auto
-themer.setAuto();
+themer.set("auto");
 
 // set theme to system
-themer.setSystem();
+themer.set("system");
 ```
 
 ### Setting a custom theme
 
-Pass a valid [Theme `object`](#theme) to [setTheme()](#setTheme).
+Pass a valid [Theme `object`](#theme) to [Themer.set()](#set).
 
 ```
 import Themer from "themer.js";
@@ -84,12 +84,12 @@ const custom = {
 
 const themer = new Themer();
 
-themer.setTheme(custom);
+themer.set(custom);
 ```
 
 ## <a name="api"></a>API
 
-### <a name="themer"></a>Themer(config)
+### <a name="themer"></a>Themer( config )
 
 - **Arguments:**
   - `{Object} config`
@@ -111,19 +111,19 @@ themer.setTheme(custom);
 
 - See also: [Config object](#config)
 
-### <a name="setAuto"></a>Themer.setAuto()
+### <a name="auto"></a>Themer.set( "auto" )
 
 - **Details:** Sets the active theme to `light` during the day and `dark` during the night.
 - **Restrictions:**
-  - `light` and `dark` themes must be defined.
+  - `light` and `dark` themes must be defined in the [Config object](#config).
   - Requires user geolocation consent.
 - **Usage:**
 
   ```
-  Themer.setAuto();
+  Themer.set("auto");
   ```
 
-### <a name="setSystem"></a>Themer.setSystem()
+### <a name="system"></a>Themer.set( "system" )
 
 - **Details:** Sets the active theme to `system`.
 - **Restriction:**
@@ -132,12 +132,12 @@ themer.setTheme(custom);
 - **Usage:**
 
   ```
-  Themer.setSystem();
+  Themer.set("system");
   ```
 
   **See also:** [Themer.systemThemeSupport()](#systemThemeSupport)
 
-### <a name="setTheme"></a>Themer.setTheme( theme )
+### <a name="set"></a>Themer.set( theme )
 
 - **Arguments:**
   - `{Object | string} theme`
@@ -152,7 +152,7 @@ themer.setTheme(custom);
     }
   };
 
-  Themer.setTheme(dark);
+  Themer.set(dark);
   ```
 
 - **See also:** [Theme `object`](#theme)

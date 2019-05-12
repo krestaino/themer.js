@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "core-js": "^2.6.5",
-    "themer.js": "^1.0.0-alpha.7",
+    "themer.js": "^1.0.0-alpha.13",
     "vue": "^2.6.10"
   },
   "devDependencies": {

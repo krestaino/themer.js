@@ -32,7 +32,7 @@ export default {
 
 <style>
 html {
-  background-color: var(--app-background-color);
+  background-color: var(--app-background-color, #f1f1f1);
 }
 
 body {
@@ -51,6 +51,7 @@ main {
 }
 
 img {
+  filter: var(--logo-filter);
   max-height: 10rem;
 }
 
@@ -61,7 +62,7 @@ div {
 button {
   background-color: transparent;
   border: 0;
-  color: #42b983;
+  color: var(--primary-text-color, #42b983);
   cursor: pointer;
   font-size: 1rem;
 }

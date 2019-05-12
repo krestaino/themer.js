@@ -8,7 +8,7 @@ export default class Themer {
     this.onUpdate = config.onUpdate;
   }
 
-  setTheme = theme => {
+  set = theme => {
     if (this.debug) {
       console.log(`Setting theme.`);
       console.log(theme);
@@ -16,7 +16,17 @@ export default class Themer {
 
     clearInterval(this.interval);
 
-    if (theme) this.setTheme(theme);
+    switch (theme) {
+      case "auto":
+        this.setAuto();
+        break;
+      case "system":
+        this.setSystem();
+        break;
+      default:
+        this.setTheme(theme);
+        break;
+    }
   };
 
   setAuto = async () => {

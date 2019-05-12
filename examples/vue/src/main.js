@@ -3,10 +3,11 @@ import App from "./App.vue";
 
 // Themer.js setup
 import Themer from "themer.js";
-import { light, dark, custom } from "./themes/index.js";
+import { light, dark } from "./themes/index.js";
 
 Vue.prototype.$themer = new Themer({
-  themes: { light, dark, custom },
+  light,
+  dark,
   debug: true
 });
 

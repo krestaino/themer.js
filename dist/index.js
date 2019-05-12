@@ -13,14 +13,27 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 class Themer {
   constructor(config) {
-    _defineProperty(this, "setTheme", theme => {
+    _defineProperty(this, "set", theme => {
       if (this.debug) {
         console.log(`Setting theme.`);
         console.log(theme);
       }
 
       clearInterval(this.interval);
-      if (theme) this.setTheme(theme);
+
+      switch (theme) {
+        case "auto":
+          this.setAuto();
+          break;
+
+        case "system":
+          this.setSystem();
+          break;
+
+        default:
+          this.setTheme(theme);
+          break;
+      }
     });
 
     _defineProperty(this, "setAuto", async () => {

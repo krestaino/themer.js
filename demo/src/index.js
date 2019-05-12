@@ -9,8 +9,6 @@ import Footer from "./components/Footer";
 import { light, dark, custom } from "./themes/index.js";
 import "./styles.scss";
 
-const themes = [light, dark, custom];
-
 export default class App extends Component {
   state = {
     active: light,
@@ -20,58 +18,44 @@ export default class App extends Component {
   themer = new Themer({
     light,
     dark,
+    debug: false,
     onUpdate: theme => this.setState({ theme, syntax: theme.syntax })
   });
 
+  setTheme(theme) {
+    this.setState({ active: theme });
+    this.themer.set(theme);
+  }
+
   componentDidMount() {
-    this.themer.setTheme(light);
+    this.themer.set(light);
   }
 
   render() {
+    const themes = [
+      { name: "Light", theme: light },
+      { name: "Dark", theme: dark },
+      { name: "Auto", theme: "auto" },
+      { name: "System", theme: "system" },
+      { name: "Custom", theme: custom }
+    ];
+
     return (
       <main>
         <Header theme={this.state.theme}>
-          {themes.map(theme => (
+          {themes.map(obj => (
             <button
-              className={theme === this.state.active ? "active" : undefined}
-              onClick={() =>
-                this.setState({ active: theme }, () => {
-                  this.themer.setTheme(theme);
-                })
+              className={obj.theme === this.state.active ? "active" : undefined}
+              disabled={
+                !this.themer.systemThemeSupport() && obj.theme === "system"
               }
-              key={theme.name}
-              title={`Set ${theme.name} as the active theme.`}
+              key={obj.name}
+              onClick={() => this.setTheme(obj.theme)}
+              title={`Set ${obj.name} as the active theme.`}
             >
-              {theme.name}
+              {obj.name}
             </button>
           ))}
-          <button
-            className={"auto" === this.state.active ? "active" : undefined}
-            onClick={() =>
-              this.setState({ active: "auto" }, () => {
-                this.themer.setAuto();
-              })
-            }
-            title={"Set `auto` as the active theme."}
-          >
-            Auto
-          </button>
-          <button
-            className={"system" === this.state.active ? "active" : undefined}
-            disabled={!this.themer.systemThemeSupport()}
-            onClick={() =>
-              this.setState({ active: "system" }, () => {
-                this.themer.setSystem();
-              })
-            }
-            title={
-              !this.themer.systemThemeSupport()
-                ? "This theme is not supported by your browser."
-                : "Set `system` as the active theme."
-            }
-          >
-            System
-          </button>
         </Header>
         <Readme syntax={this.state.syntax} />
         <Footer />
