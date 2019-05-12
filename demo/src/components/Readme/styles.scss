@@ -1,6 +1,10 @@
 #readme {
   padding-top: 2rem;
 
+  @media only screen and (max-width: 1000px) {
+    padding-top: 1rem;
+  }
+
   // hide demo section
   h1,
   h2:first-of-type,
