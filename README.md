@@ -142,7 +142,7 @@ themer.set(custom);
   Themer.set("system");
   ```
 
-  **See also:** [Themer.systemThemeSupport()](#systemThemeSupport)
+  **See also:** [Themer.themeSupportCheck()](#themeSupportCheck)
 
 ### <a name="set"></a>Themer.set( theme )
 
@@ -164,7 +164,7 @@ themer.set(custom);
 
 - **See also:** [Theme `object`](#theme)
 
-### <a name="systemThemeSupport"></a>Themer.systemThemeSupport()
+### <a name="themeSupportCheck"></a>Themer.themeSupportCheck()
 
 - **Details:** Helper function to determine browser support for the `system` theme.
 - **Returns:** `boolean`
@@ -172,11 +172,11 @@ themer.set(custom);
 
   ```
   // Chrome 76, Firefox 67, Safari 12.1
-  Themer.systemThemeSupport();
+  Themer.themeSupportCheck();
   ↳ true
 
   // unsupported browsers
-  Themer.systemThemeSupport();
+  Themer.themeSupportCheck();
   ↳ false
   ```
 

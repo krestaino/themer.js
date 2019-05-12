@@ -109,7 +109,7 @@ class Themer {
       return window.matchMedia(`(prefers-color-scheme: ${theme})`).matches;
     });
 
-    _defineProperty(this, "systemThemeSupport", () => {
+    _defineProperty(this, "themeSupportCheck", () => {
       return this.prefersColorScheme("dark") || this.prefersColorScheme("light") ? true : false;
     });
 

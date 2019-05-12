@@ -1,10 +1,8 @@
 import { atomOneDark } from "react-syntax-highlighter/dist/styles/hljs";
 
 export default {
-  name: "Dark",
-  icon: "🌒",
-  syntax: atomOneDark,
   android: "#2d303c",
+  syntax: atomOneDark,
   styles: {
     "--app-background-color": "#242835",
     "--primary-text-color": "#f1f1f1",

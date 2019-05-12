@@ -1,10 +1,8 @@
 import { gruvboxLight } from "react-syntax-highlighter/dist/styles/hljs";
 
 export default {
-  name: "Custom",
-  icon: "🎨",
-  syntax: gruvboxLight,
   android: "#fff9df",
+  syntax: gruvboxLight,
   styles: {
     "--app-background-color": "#fbf1c7",
     "--primary-text-color": "#403c28",

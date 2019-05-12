@@ -105,7 +105,7 @@ export default class Themer {
     return window.matchMedia(`(prefers-color-scheme: ${theme})`).matches;
   };
 
-  systemThemeSupport = () => {
+  themeSupportCheck = () => {
     return this.prefersColorScheme("dark") || this.prefersColorScheme("light")
       ? true
       : false;

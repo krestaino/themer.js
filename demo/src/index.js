@@ -9,59 +9,73 @@ import Footer from "./components/Footer";
 import { light, dark, custom } from "./themes/index.js";
 import "./styles.scss";
 
+const themes = [
+  { name: "Light", icon: "🌞", theme: light },
+  { name: "Dark", icon: "🌒", theme: dark },
+  { name: "Auto", icon: "🌗", theme: "auto" },
+  { name: "System", icon: "💻", theme: "system" },
+  { name: "Custom", icon: "🎨", theme: custom }
+];
+
 export default class App extends Component {
   state = {
-    active: light,
-    theme: light
+    active: undefined,
+    icon: undefined,
+    theme: undefined,
+    themes
   };
 
   themer = new Themer({
-    light,
-    dark,
     debug: false,
-    onUpdate: theme => this.setState({ theme, syntax: theme.syntax })
+    onUpdate: theme => {
+      this.setState({
+        theme,
+        syntax: theme.syntax
+      });
+    },
+    light,
+    dark
   });
 
-  setTheme(theme) {
-    this.setState({ active: theme });
-    this.themer.set(theme);
+  setTheme(theme, icon) {
+    this.setState({ active: theme, icon }, () => {
+      this.themer.set(theme);
+    });
   }
 
+  getDisabled = theme => {
+    return !this.themer.themeSupportCheck() && theme === "system";
+  };
+
+  getTitle = ({ name, theme }) => {
+    return !this.themer.themeSupportCheck() && theme === "system"
+      ? "This theme is not supported by your browser."
+      : `Set the active theme to ${name}.`;
+  };
+
   componentDidMount() {
-    this.themer.set(light);
+    this.setTheme(light, "🌞");
   }
 
   render() {
-    const themes = [
-      { name: "Light", theme: light },
-      { name: "Dark", theme: dark },
-      { name: "Auto", theme: "auto" },
-      { name: "System", theme: "system" },
-      { name: "Custom", theme: custom }
-    ];
+    const { active, syntax } = this.state;
 
     return (
       <main>
-        <Header theme={this.state.theme}>
-          {themes.map(obj => (
+        <Header icon={this.state.icon}>
+          {themes.map(({ icon, name, theme }) => (
             <button
-              className={obj.theme === this.state.active ? "active" : undefined}
-              disabled={
-                !this.themer.systemThemeSupport() && obj.theme === "system"
-              }
-              key={obj.name}
-              onClick={() => this.setTheme(obj.theme)}
-              title={
-                !this.themer.systemThemeSupport() && obj.theme === "system"
-                  ? "This theme is not supported by your browser."
-                  : `Set the active theme to ${obj.name}.`
-              }
+              className={theme === active ? "active" : undefined}
+              disabled={this.getDisabled(theme)}
+              key={name}
+              onClick={() => this.setTheme(theme, icon)}
+              title={this.getTitle({ name, theme })}
             >
-              {obj.name}
+              {name}
             </button>
           ))}
         </Header>
-        <Readme syntax={this.state.syntax} />
+        <Readme syntax={syntax} />
         <Footer />
       </main>
     );
