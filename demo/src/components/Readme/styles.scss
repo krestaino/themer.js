@@ -67,9 +67,8 @@
     padding-left: 2rem;
 
     li {
-      line-height: 1.25;
       list-style-type: square;
-      margin-top: 1rem;
+      margin-top: 0.5rem;
     }
 
     @media only screen and (max-width: 650px) {
@@ -122,6 +121,7 @@
   pre {
     border-radius: 3px;
     font-family: 'Ubuntu Mono', monospace;
+    line-height: 1.5;
     padding: 1rem !important;
 
     code {
