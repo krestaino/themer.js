@@ -8,6 +8,7 @@ body {
 
 main {
   align-items: center;
+  color: var(--primary-text-color, #61dafb);
   display: flex;
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   flex-direction: column;
@@ -18,35 +19,32 @@ main {
 }
 
 img {
-  animation: App-logo-spin infinite 20s linear;
   filter: var(--logo-filter);
-  margin-left: -10rem;
-  max-height: 10rem;
-  max-width: 10rem;
+  height: 10rem;
+  width: 10rem;
 }
 
-main div {
+div {
   margin-top: 2rem;
 }
 
 button {
   background-color: transparent;
   border: 0;
-  color: var(--primary-text-color, #61dafb);
+  color: inherit;
   cursor: pointer;
   font-size: 1rem;
-}
+  outline: 0;
 
-button+button {
-  margin-left: 1rem;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+  & + button {
+    margin-left: 1rem;
   }
 
-  to {
-    transform: rotate(360deg);
+  &:disabled {
+    opacity: 0.5;
+  }
+
+  &.active {
+    text-decoration: underline;
   }
 }

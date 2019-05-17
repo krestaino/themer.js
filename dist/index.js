@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports.default = exports.system = exports.auto = void 0;
 
 var _suncalc = _interopRequireDefault(require("suncalc"));
 
@@ -11,17 +11,23 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+const auto = {
+  name: "Auto",
+  theme: "auto"
+};
+exports.auto = auto;
+const system = {
+  name: "System",
+  theme: "system"
+};
+exports.system = system;
+
 class Themer {
   constructor(config) {
-    _defineProperty(this, "set", theme => {
-      if (this.debug) {
-        console.log(`Setting theme.`);
-        console.log(theme);
-      }
-
+    _defineProperty(this, "set", themeObj => {
       clearInterval(this.interval);
 
-      switch (theme) {
+      switch (themeObj.theme) {
         case "auto":
           this.setAuto();
           break;
@@ -31,14 +37,14 @@ class Themer {
           break;
 
         default:
-          this.setTheme(theme);
+          this.setTheme(themeObj);
           break;
       }
     });
 
     _defineProperty(this, "setAuto", async () => {
       if (!this.light || !this.dark) {
-        if (this.debug) console.error("Missing `light` or `dark` theme.");
+        this.log("Error: Missing `light` or `dark` theme.");
         return;
       }
 
@@ -54,7 +60,7 @@ class Themer {
           this.getSunriseSunset(latitude, longitude);
         }, 60000);
       } catch (error) {
-        if (this.debug) console.error(error);
+        this.log(`Error: ${error.message}`);
       }
     });
 
@@ -81,27 +87,32 @@ class Themer {
       } else if (this.prefersColorScheme("light")) {
         this.setTheme(this.light);
       } else {
-        if (this.debug) console.error("System theme not supported by this browser. Requires prefers-color-scheme. https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme");
+        this.log("Error: System theme not supported by this browser. Requires prefers-color-scheme. https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme");
       }
     });
 
-    _defineProperty(this, "setTheme", theme => {
+    _defineProperty(this, "setTheme", themeObj => {
       const html = document.querySelector("html");
-      Object.entries(theme.styles).forEach(style => {
+      Object.entries(themeObj.theme.styles).forEach(style => {
         html.style.setProperty(style[0], style[1]);
       });
-      this.setAndroid(theme);
-      if (this.debug) console.log("Theme changed successfully.");
-      if (this.onUpdate) this.onUpdate(theme);
+      this.setAndroid(themeObj.theme);
+      this.log("Success: Theme changed successfully.");
+      this.onUpdate(themeObj);
     });
 
-    _defineProperty(this, "setAndroid", theme => {
-      if (theme.android) {
+    _defineProperty(this, "setAndroid", ({
+      android
+    }) => {
+      if (android) {
         const metaThemeColor = document.querySelector("meta[name=theme-color]");
-        if (metaThemeColor) metaThemeColor.setAttribute("content", theme.android);
-        if (this.debug && metaThemeColor) console.log("Android theme-color changed successfully.");
+
+        if (metaThemeColor) {
+          metaThemeColor.setAttribute("content", android);
+          this.log("Success: Android theme-color changed successfully.");
+        }
       } else {
-        if (this.debug) console.error("Android theme-color undefined.");
+        this.log("Error: Android theme-color undefined.");
       }
     });
 
@@ -113,10 +124,14 @@ class Themer {
       return this.prefersColorScheme("dark") || this.prefersColorScheme("light") ? true : false;
     });
 
-    this.light = config.light;
-    this.dark = config.dark;
+    this.light = config.themes.light;
+    this.dark = config.themes.dark;
     this.debug = config.debug;
     this.onUpdate = config.onUpdate;
+  }
+
+  log(message) {
+    if (this.debug) console.log(message);
   }
 
 }

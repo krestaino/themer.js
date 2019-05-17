@@ -1,22 +1,27 @@
 import SunCalc from "suncalc";
 
+export const auto = {
+  name: "Auto",
+  theme: "auto"
+};
+
+export const system = {
+  name: "System",
+  theme: "system"
+};
+
 export default class Themer {
   constructor(config) {
-    this.light = config.light;
-    this.dark = config.dark;
+    this.light = config.themes.light;
+    this.dark = config.themes.dark;
     this.debug = config.debug;
     this.onUpdate = config.onUpdate;
   }
 
-  set = theme => {
-    if (this.debug) {
-      console.log(`Setting theme.`);
-      console.log(theme);
-    }
-
+  set = themeObj => {
     clearInterval(this.interval);
 
-    switch (theme) {
+    switch (themeObj.theme) {
       case "auto":
         this.setAuto();
         break;
@@ -24,14 +29,14 @@ export default class Themer {
         this.setSystem();
         break;
       default:
-        this.setTheme(theme);
+        this.setTheme(themeObj);
         break;
     }
   };
 
   setAuto = async () => {
     if (!this.light || !this.dark) {
-      if (this.debug) console.error("Missing `light` or `dark` theme.");
+      this.log("Error: Missing `light` or `dark` theme.");
       return;
     }
 
@@ -45,7 +50,7 @@ export default class Themer {
         this.getSunriseSunset(latitude, longitude);
       }, 60000);
     } catch (error) {
-      if (this.debug) console.error(error);
+      this.log(`Error: ${error.message}`);
     }
   };
 
@@ -70,34 +75,33 @@ export default class Themer {
     } else if (this.prefersColorScheme("light")) {
       this.setTheme(this.light);
     } else {
-      if (this.debug)
-        console.error(
-          "System theme not supported by this browser. Requires prefers-color-scheme. https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme"
-        );
+      this.log(
+        "Error: System theme not supported by this browser. Requires prefers-color-scheme. https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme"
+      );
     }
   };
 
-  setTheme = theme => {
+  setTheme = themeObj => {
     const html = document.querySelector("html");
 
-    Object.entries(theme.styles).forEach(style => {
+    Object.entries(themeObj.theme.styles).forEach(style => {
       html.style.setProperty(style[0], style[1]);
     });
 
-    this.setAndroid(theme);
-
-    if (this.debug) console.log("Theme changed successfully.");
-    if (this.onUpdate) this.onUpdate(theme);
+    this.setAndroid(themeObj.theme);
+    this.log("Success: Theme changed successfully.");
+    this.onUpdate(themeObj);
   };
 
-  setAndroid = theme => {
-    if (theme.android) {
+  setAndroid = ({ android }) => {
+    if (android) {
       const metaThemeColor = document.querySelector("meta[name=theme-color]");
-      if (metaThemeColor) metaThemeColor.setAttribute("content", theme.android);
-      if (this.debug && metaThemeColor)
-        console.log("Android theme-color changed successfully.");
+      if (metaThemeColor) {
+        metaThemeColor.setAttribute("content", android);
+        this.log("Success: Android theme-color changed successfully.");
+      }
     } else {
-      if (this.debug) console.error("Android theme-color undefined.");
+      this.log("Error: Android theme-color undefined.");
     }
   };
 
@@ -110,4 +114,8 @@ export default class Themer {
       ? true
       : false;
   };
+
+  log(message) {
+    if (this.debug) console.log(message);
+  }
 }

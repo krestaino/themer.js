@@ -38,17 +38,20 @@ $ npm install themer.js
 To use the `auto` or `system` themes, you must define a `light` and `dark` [Theme `object`](#theme).
 
 ```
-import Themer from "themer.js";
+import Themer, { auto, system } from "themer.js";
 
-const config = {
-  "light": {
-    "styles": {
+const light = {
+  "styles": {
+    "css": {
       "--app-background-color": "#f1f1f1",
       "--primary-text-color": "#555"
     }
-  },
-  "dark": {
-    "styles": {
+  }
+}
+
+const dark = {
+  "styles": {
+    "css": {
       "--app-background-color": "#242835",
       "--primary-text-color": "#f1f1f1"
     }
@@ -56,25 +59,29 @@ const config = {
 }
 
 // instantiate Themer.js
-const themer = new Themer(config);
+const themer = new Themer({
+  themes: { light, dark, auto, system }
+});
 ```
 
 ### Setting a theme
 
 ```
-import Themer from "themer.js";
+import Themer, { auto, system } from "themer.js";
 import { light, dark } from "./themes/index.js";
 
-const themer = new Themer({ light, dark });
+const themer = new Themer({
+  themes: { light, dark }
+});
 
 // set theme to dark
 themer.set(dark);
 
 // set theme to auto
-themer.set("auto");
+themer.set(auto);
 
 // set theme to system
-themer.set("system");
+themer.set(system);
 ```
 
 ### Setting a custom theme
@@ -86,8 +93,10 @@ import Themer from "themer.js";
 
 const custom = {
   "styles": {
-    "--app-background-color": "#f1f1f1",
-    "--primary-text-color": "#555"
+    "css": {
+      "--app-background-color": "#f1f1f1",
+      "--primary-text-color": "#555"
+    }
   }
 };
 
@@ -106,13 +115,13 @@ themer.set(custom);
 - **Usage:**
 
   ```
-  import { light, dark } from "./themes/index.js";
+  import Themer, { auto, system } from "themer.js";
+  import { light, dark, custom } from "./themes/index.js";
 
   const config = {
     debug: true,
     onUpdate: (theme) => console.log(theme),
-    light,
-    dark
+    themes: { light, dark, auto, system, custom }
   };
 
   const themer = new Themer(config);
@@ -120,44 +129,23 @@ themer.set(custom);
 
 - **See also:** [Config `object`](#config)
 
-### <a name="auto"></a>Themer.set( "auto" )
-
-- **Details:** Sets the active theme to `light` during the day and `dark` during the night.
-- **Restrictions:**
-  - `light` and `dark` themes must be defined in the [Config `object`](#config).
-  - Requires user geolocation consent.
-- **Usage:**
-
-  ```
-  Themer.set("auto");
-  ```
-
-### <a name="system"></a>Themer.set( "system" )
-
-- **Details:** Sets the active theme to `system`.
-- **Restriction:**
-  - `light` and `dark` themes must be defined.
-  - The browser must support [prefers-color-scheme](https://caniuse.com/#feat=prefers-color-scheme).
-- **Usage:**
-
-  ```
-  Themer.set("system");
-  ```
-
-  **See also:** [Themer.themeSupportCheck()](#themeSupportCheck)
-
 ### <a name="set"></a>Themer.set( theme )
 
 - **Arguments:**
-  - `{Object | string} theme`
+  - `{Object} theme`
 - **Details:** Sets the active theme.
+- **Restrictions:**
+  - **`auto|system`**: Both `light` and `dark` themes must be defined in the [Config `object`](#config).
+  - **`auto`:** Requires user geolocation consent.
+  - **`system`:** The browser must support [prefers-color-scheme](https://caniuse.com/#feat=prefers-color-scheme).
 - **Usage:**
 
   ```
   const dark = {
-    "android": "#242835",
     "styles": {
-      "--app-background-color": "#242835"
+      "css": {
+        "--app-background-color": "#242835"
+      }
     }
   };
 
@@ -186,12 +174,11 @@ themer.set(custom);
 
 ### <a name="config"></a>Config `object`
 
-| Key        | Type       | Description                                       |
-| ---------- | ---------- | ------------------------------------------------- |
-| `debug`    | `boolean`  | Log debug console statements.                     |
-| `onUpdate` | `function` | A callback function that returns the set `theme`. |
-| `light`    | `object`   | The `dark` theme.                                 |
-| `dark`     | `object`   | The `light` theme.                                |
+| Key        | Type       | Description                                                        |
+| ---------- | ---------- | ------------------------------------------------------------------ |
+| `debug`    | `boolean`  | Log debug console statements.                                      |
+| `onUpdate` | `function` | A callback function that returns the set [Theme `object`](#theme). |
+| `themes`   | `object`   | The available [Theme `object`](#theme)s.                           |
 
 **Example:**
 
@@ -199,41 +186,74 @@ themer.set(custom);
 {
   debug: true,
   onUpdate: (theme) => console.log(theme),
-  "light": {
-    "styles": {
-      "--app-background-color": "#f1f1f1",
-      "--primary-text-color": "#555"
-    }
-  },
-  "dark": {
-    "styles": {
-      "--app-background-color": "#242835",
-      "--primary-text-color": "#f1f1f1"
-    }
-  }
+  themes: { light, dark, auto, system, custom }
 }
 ```
 
 ### <a name="theme"></a>Theme `object`
 
+| Key      | Type            | Description                                                               |
+| -------- | --------------- | ------------------------------------------------------------------------- |
+| `styles` | `object|string` | A [Styles `object`](#styles) or `string` preset. (`"auto"` or `"system"`) |
+
+**Examples:**
+
+```
+{
+  "styles": {
+    "android": "#f1f1f1",
+    "css": {
+      "--app-background-color": "#f1f1f1",
+      "--primary-text-color": "#555"
+    }
+  }
+}
+```
+
+```
+{
+  "styles": "auto"
+}
+```
+
+### <a name="styles"></a>Styles `object`
+
+The theme styles. Feel free to add more `key`/`value` pairs and use the `onUpdate` callback to get the active theme. You can use the active theme object in other parts of your application. For example, if you want to have different Google Maps themes for `light` and `dark` themes, you can add a new `key` to the [Styles `object`](#styles) called `googleMaps` and store the Google Maps style array there. This allows you to get the appropriate styles even when using `auto` and `system` themes.
+
 | Key       | Type     | Description                                                                                                                      |
 | --------- | -------- | -------------------------------------------------------------------------------------------------------------------------------- |
 | `android` | `string` | Sets the [meta theme-color](https://developers.google.com/web/updates/2014/11/Support-for-theme-color-in-Chrome-39-for-Android). |
-| `styles`  | `object` | The theme CSS variables.                                                                                                         |
+| `css`     | `object` | The theme CSS variables.                                                                                                         |
 
 **Example:**
 
 ```
 {
-  "android": "#f1f1f1",
   "styles": {
-    "--app-background-color": "#f1f1f1",
-    "--primary-text-color": "#555"
+    "android": "#f1f1f1",
+    "css": {
+      "--app-background-color": "#f1f1f1",
+      "--primary-text-color": "#555"
+    }
   }
 }
 ```
 
-Use the CSS variables anywhere in your CSS and it will update in real time to the active theme.
+### <a name="presets"></a>Preset Themes ( `auto|dark` )
+
+To use `auto` and `system` themes, both a `light` and `dark` theme must be defined in the [Config `object`](#config)
+
+- **Details:**
+  - **`auto`:** Sets `light` during the day and `dark` during the night.
+  - **`system`:** Sets to system theme preference. (`light`|`dark`)
+- **Restrictions:**
+  - **`auto|system`**: Both `light` and `dark` themes must be defined in the [Config `object`](#config).
+  - **`auto`:** Requires user geolocation consent.
+  - **`system`:** The browser must support [prefers-color-scheme](https://caniuse.com/#feat=prefers-color-scheme).
+
+## CSS Variables
+
+Use the CSS variables defined in your [Styles `object`](#styles) anywhere in your application and it will update in real time to the corresponding theme variable.
 
 ```
 html {

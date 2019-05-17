@@ -1,38 +1,60 @@
-import React from "react";
+import React, { Component } from "react";
+import Themer, { auto, system } from "themer.js";
+import { light, dark, custom } from "./themer/index.js";
+
 import logo from "./assets/logo.svg";
-import "./App.css";
+import "./App.scss";
 
-// Themer.js setup
-import Themer from "themer.js";
-import { light, dark, custom } from "./themes/index.js";
+export default class App extends Component {
+  state = {
+    active: undefined,
+    selected: light,
+    themes: [light, dark, auto, system, custom]
+  };
 
-const themer = new Themer({
-  light,
-  dark,
-  debug: true
-});
+  noThemeSupport({ theme }) {
+    return theme === "system" && !this.themer.themeSupportCheck();
+  }
 
-const themes = [
-  { name: "Auto", theme: "auto" },
-  { name: "System", theme: "system" },
-  { name: "Light", theme: light },
-  { name: "Dark", theme: dark },
-  { name: "Custom", theme: custom }
-];
+  setTheme(theme) {
+    this.setState({ selected: theme });
+    this.themer.set(theme);
+  }
 
-function App() {
-  return (
-    <main>
-      <img alt="React logo" src={logo} />
-      <div>
-        {themes.map(obj => (
-          <button onClick={() => themer.set(obj.theme)} key={obj.name}>
-            {obj.name}
-          </button>
-        ))}
-      </div>
-    </main>
-  );
+  componentDidMount() {
+    this.themer = new Themer({
+      debug: true,
+      onUpdate: theme => this.setState({ active: theme }),
+      themes: { light, dark, auto, system, custom }
+    });
+    this.themer.set(this.state.selected);
+  }
+
+  render() {
+    const { active, selected, themes } = this.state;
+
+    return (
+      <main>
+        <img alt="React logo" src={logo} />
+        <div>
+          {active &&
+            themes.map(theme => (
+              <button
+                className={selected === theme ? "active" : undefined}
+                disabled={this.noThemeSupport(theme)}
+                key={theme.name}
+                title={
+                  this.noThemeSupport(theme)
+                    ? "This theme is not supported by your browser."
+                    : `Change theme to ${theme.name}.`
+                }
+                onClick={() => this.setTheme(theme)}
+              >
+                {theme.name}
+              </button>
+            ))}
+        </div>
+      </main>
+    );
+  }
 }
-
-export default App;
