@@ -1,0 +1,11 @@
+html {
+  background-color: var(--app-background-color, #f1f1f1);
+}
+
+main {
+  color: var(--primary-text-color, #61dafb);
+}
+
+img {
+  filter: var(--logo-filter);
+}

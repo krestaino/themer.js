@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import Themer, { auto, system } from "themer.js";
 import { light, dark, custom } from "./themer/index.js";
 
-import logo from "./assets/logo.svg";
-import "./App.scss";
+import logo from "./assets/logo.png";
+import "./App.css";
 
 export default class App extends Component {
   state = {
@@ -36,11 +36,11 @@ export default class App extends Component {
     return (
       <main>
         <img alt="React logo" src={logo} />
-        <div>
+        <section>
           {active &&
             themes.map(theme => (
               <button
-                className={selected === theme ? "active" : undefined}
+                className={selected === theme ? "selected" : undefined}
                 disabled={this.noThemeSupport(theme)}
                 key={theme.name}
                 title={
@@ -53,7 +53,7 @@ export default class App extends Component {
                 {theme.name}
               </button>
             ))}
-        </div>
+        </section>
       </main>
     );
   }

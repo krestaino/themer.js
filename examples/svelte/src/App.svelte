@@ -25,12 +25,26 @@
   themer.set(state.selected);
 </script>
 
+<style>
+  :global(html) {
+    background-color: var(--app-background-color, #f1f1f1);
+  }
+
+  main {
+    color: var(--primary-text-color, #61dafb);
+  }
+
+  img {
+    filter: var(--logo-filter);
+  }
+</style>
+
 <main>
   <img alt="Svelte logo" src="assets/logo.png" />
-  <div>
+  <section>
     {#each state.themes as theme}
       <button
-        class={state.selected === theme ? 'active' : undefined}
+        class={state.selected === theme ? 'selected' : undefined}
         disabled={noThemeSupport(theme)}
         key={theme.name}
         title={noThemeSupport(theme) ? 'This theme is not supported by your browser.' : `Change theme to ${theme.name}.`}
@@ -38,5 +52,5 @@
          {theme.name}
       </button>
     {/each}
-  </div>
+  </section>
 </main>

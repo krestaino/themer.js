@@ -1,14 +1,9 @@
-html {
-  background-color: var(--app-background-color, #f1f1f1);
-}
-
 body {
   margin: 0;
 }
 
 main {
   align-items: center;
-  color: var(--primary-text-color, #61dafb);
   display: flex;
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   flex-direction: column;
@@ -19,12 +14,11 @@ main {
 }
 
 img {
-  filter: var(--logo-filter);
-  height: 10rem;
-  width: 10rem;
+  height: 128px;
+  width: 128px;
 }
 
-div {
+section {
   margin-top: 2rem;
 }
 
@@ -35,16 +29,16 @@ button {
   cursor: pointer;
   font-size: 1rem;
   outline: 0;
+}
 
-  & + button {
-    margin-left: 1rem;
-  }
+button+button {
+  margin-left: 1rem;
+}
 
-  &:disabled {
-    opacity: 0.5;
-  }
+button:disabled {
+  opacity: 0.5;
+}
 
-  &.active {
-    text-decoration: underline;
-  }
+button.selected {
+  text-decoration: underline;
 }
