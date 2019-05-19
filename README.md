@@ -20,6 +20,7 @@ Spice up your app with dynamic themes.
 
 - **Vue:** [themer.js/examples/vue](https://github.com/krestaino/themer.js/tree/master/examples/vue)
 - **React:** [themer.js/examples/react](https://github.com/krestaino/themer.js/tree/master/examples/react)
+- **Svelte:** [themer.js/examples/svelte](https://github.com/krestaino/themer.js/tree/master/examples/svelte)
 
 ## <a name="quick-start"></a>Quick Start
 
