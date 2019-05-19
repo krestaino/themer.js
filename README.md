@@ -69,7 +69,7 @@ const themer = new Themer({
 
 ```
 import Themer, { auto, system } from "themer.js";
-import { light, dark } from "./themes/index.js";
+import { light, dark, auto, system } from "./themes/index.js";
 
 const themer = new Themer({
   themes: { light, dark }
