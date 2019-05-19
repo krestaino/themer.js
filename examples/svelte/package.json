@@ -20,6 +20,6 @@
     "start:dev": "sirv public --dev"
   },
   "dependencies": {
-    "themer.js": "^1.0.0-beta.3"
+    "themer.js": "^1.0.0-beta.4"
   }
 }

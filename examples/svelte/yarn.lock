@@ -1910,10 +1910,10 @@ terser@^3.14.1:
     source-map "~0.6.1"
     source-map-support "~0.5.10"
 
-themer.js@^1.0.0-beta.3:
-  version "1.0.0-beta.3"
-  resolved "https://registry.yarnpkg.com/themer.js/-/themer.js-1.0.0-beta.3.tgz#b2d0f38e796d8ed2f69f36df97118359583a9b6f"
-  integrity sha512-2qPaagoAaSSTBdiaomeenp+sXOpb4J2r7+mt9eBmuY+re2efPJM8anjh9EOgaMed021m7hVRPy0CeMAUJcUtJw==
+themer.js@^1.0.0-beta.4:
+  version "1.0.0-beta.4"
+  resolved "https://registry.yarnpkg.com/themer.js/-/themer.js-1.0.0-beta.4.tgz#05df7028c45981f003fa71a4d4a5dabd0ee91629"
+  integrity sha512-ngWwZltzTXL4lNrI7vkYymjkBQyybYwvvryz1+wqi2cH5/3fSX6Te2WFz7sKTpkHgc53ueZ7YZ4iFk4b3v81xg==
   dependencies:
     suncalc "1.8.0"
 
