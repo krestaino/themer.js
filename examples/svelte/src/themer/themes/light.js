@@ -1,11 +1,11 @@
 export default {
   name: "Light",
   theme: {
-    android: "#f1f1f1",
+    android: "#fff3ef",
     styles: {
-      "--app-background-color": "#f1f1f1",
+      "--app-background-color": "#fff3ef",
       "--primary-text-color": "#ff3e01",
-      "--logo-filter": "hue-rotate(0deg)"
+      "--logo-filter": "none"
     }
   }
 };

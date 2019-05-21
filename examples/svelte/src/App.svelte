@@ -41,7 +41,7 @@
 </style>
 
 <main>
-  <img alt="Svelte logo" src="assets/logo.png" />
+  <img alt="Svelte logo" src="assets/svelte-logo.svg" />
   <section>
     {#each state.themes as theme}
       <button

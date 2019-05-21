@@ -1,11 +1,11 @@
 export default {
   name: "Dark",
   theme: {
-    android: "#242835",
+    android: "#1d0c06",
     styles: {
-      "--app-background-color": "#20232a",
+      "--app-background-color": "#1d0c06",
       "--primary-text-color": "#ff3e01",
-      "--logo-filter": "hue-rotate(0deg)"
+      "--logo-filter": "none"
     }
   }
 };

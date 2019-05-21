@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Themer, { auto, system } from "themer.js";
 import { light, dark, custom } from "./themer/index.js";
 
-import logo from "./assets/logo.png";
+import logo from "./assets/react-logo.svg";
 import "./App.css";
 
 export default class App extends Component {

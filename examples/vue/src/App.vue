@@ -1,6 +1,6 @@
 <template>
   <main>
-    <img alt="Vue logo" src="./assets/logo.png">
+    <img alt="Vue logo" src="./assets/vue-logo.svg">
     <section v-if="active">
       <button
         v-for="theme in themes"

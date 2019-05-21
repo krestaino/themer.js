@@ -1,11 +1,11 @@
 export default {
   name: "Custom",
   theme: {
-    android: "#b95c2f",
+    android: "#bf3c12",
     styles: {
-      "--app-background-color": "#fbf1c7",
-      "--primary-text-color": "#a87552",
-      "--logo-filter": "sepia(80%)"
+      "--app-background-color": "#bf3c12",
+      "--primary-text-color": "#fff",
+      "--logo-filter": "none"
     }
   }
 };
