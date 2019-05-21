@@ -2,11 +2,17 @@
   import Themer, { auto, system } from "themer.js";
   import { light, dark, custom } from "./themer/index.js";
 
-  export const state = {
+  const state = {
     active: undefined,
     selected: light,
     themes: [light, dark, auto, system, custom]
   };
+
+  const themer = new Themer({
+    debug: true,
+    onUpdate: theme => (state.active = theme),
+    themes: { light, dark, auto, system, custom }
+  });
 
   function noThemeSupport({ theme }) {
     return theme === "system" && !themer.themeSupportCheck();
@@ -17,11 +23,6 @@
     themer.set(theme);
   }
 
-  export const themer = new Themer({
-    debug: true,
-    onUpdate: theme => (state.active = theme),
-    themes: { light, dark, auto, system, custom }
-  });
   themer.set(state.selected);
 </script>
 
