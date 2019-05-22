@@ -5,13 +5,13 @@ export default {
   icon: "🌞",
   syntax: atomOneLight,
   theme: {
-    android: "#f8f8f8",
+    android: "#eee",
     styles: {
       "--app-background-color": "#f1f1f1",
       "--primary-text-color": "#555",
       "--primary-accent-color": "#056fb6",
       "--primary-link-color": "var(--primary-accent-color)",
-      "--header-background-color": "#f8f8f8",
+      "--header-background-color": "#eee",
       "--button-border-color": "#ddd",
       "--button-background-color": "#fff",
       "--button-text-color": "#666",

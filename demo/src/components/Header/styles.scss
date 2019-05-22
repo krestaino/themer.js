@@ -11,7 +11,6 @@
   left: 0;
   width: 100%;
   padding: 1rem 0;
-  transition: background-color 0.3s;
 
   h1 {
     display: inline-block;
@@ -75,10 +74,7 @@
       font-family: inherit;
       padding: 0.75rem 1.5rem;
       text-transform: capitalize;
-      transition: background-color 0.3s,
-        border-color 0.3s,
-        color 0.3s,
-        transform 0.3s;
+      transition: transform 0.3s;
       font-weight: bold;
       text-transform: uppercase;
       font-size: 0.8rem;

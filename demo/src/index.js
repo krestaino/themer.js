@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import ReactDOM from "react-dom";
 
 import Themer from "themer.js";
-import { light, dark, auto, system, custom } from "./themer/index.js";
+import { light, dark, black, auto, system, custom } from "./themer/index.js";
 
 import Header from "./components/Header";
 import Readme from "./components/Readme";
@@ -13,8 +13,8 @@ import "./styles.scss";
 export default class App extends Component {
   state = {
     active: undefined,
-    selected: light,
-    themes: [light, dark, auto, system, custom]
+    selected: dark,
+    themes: [dark, light, auto, system, black, custom]
   };
 
   noThemeSupport({ theme }) {
@@ -30,7 +30,13 @@ export default class App extends Component {
     this.themer = new Themer({
       debug: true,
       onUpdate: theme => this.setState({ active: theme }),
-      themes: { light, dark, auto, system, custom }
+      themes: {
+        light,
+        dark,
+        auto,
+        system,
+        custom
+      }
     });
     this.themer.set(this.state.selected);
   }

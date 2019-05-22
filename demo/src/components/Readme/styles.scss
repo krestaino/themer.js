@@ -43,7 +43,6 @@
     padding-top: 7rem;
     margin-bottom: 1.5rem;
     margin-top: -5rem;
-    transition: border-color 0.3s;
 
     &+h3 {
       margin-top: 0;
@@ -105,7 +104,6 @@
     background-color: #e6e6e6;
     background-color: var(--table-pre-background-color, #e6e6e6) !important;
     margin-bottom: 1rem;
-    transition: background-color 0.3s;
   }
 
   table code,
@@ -116,7 +114,6 @@
     background-color: var(--code-background-color, rgba(0, 0, 0, 0.075));
     border-radius: 3px;
     padding: 4px;
-    transition: background-color 0.3s;
   }
 
   pre {
